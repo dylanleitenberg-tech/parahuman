@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dylan Leitenberg</title>
+<meta name="description" content="Things I have built: an AR glasses rig, a self-replicating asteroid miner design, a local voice assistant, a talent-scouting web app, a metered AI-allowance marketplace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="todo-banner" hidden></div>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Dylan Leitenberg</a>
+    <ul>
+      <li><a href="#ar-rig">01 Glasses</a></li>
+      <li><a href="#asteroid-miner">02 Miner</a></li>
+      <li><a href="#jarvis">03 JARVIS</a></li>
+      <li><a href="#neuropian">04 Neuropian</a></li>
+      <li><a href="#token-barter">05 Barter</a></li>
+      <li><a href="#robotics">06 Robotics</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="kicker">Kauai, Hawaii</p>
+      <h1>Dylan<br>Leitenberg</h1>
+
+      <p class="tagline">I build.<br>I am working on self-replicating robots for asteroid mining.</p>
+
+      <div class="meta">
+        <span>17</span>
+        <span>Class of 2027</span>
+        <span>Island School, Kauai</span>
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/dylanleitenberg-tech">GitHub</a>
+        <a href="mailto:dylanleitenberg@gmail.com">Email</a>
+        <!-- add: the one-minute introduction video once it is on YouTube -->
+      </div>
+    </div>
+    <!-- Portrait: guitar in a tree, chicken on the hat -->
+    <img class="portrait" src="assets/dylan-guitar.jpg" alt="Dylan Leitenberg playing classical guitar in a tree, in a straw hat and sunglasses, with a chicken perched on the hat">
+  </div>
+</header>
+
+<section class="index">
+  <div class="wrap">
+    <h2>Index</h2>
+    <ol class="index">
+      <li><a href="#ar-rig"><span class="n">01</span><span class="t">AR Glasses Rig<small>hardware, worn, running</small></span><span class="s">2026 –</span></a></li>
+      <li><a href="#asteroid-miner"><span class="n">02</span><span class="t">Self-Replicating Asteroid Miner<small>design program, Mark 5</small></span><span class="s">2026 –</span></a></li>
+      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>hands-and-voice control of a Mac, no keyboard</small></span><span class="s">2026</span></a></li>
+      <li><a href="#neuropian"><span class="n">04</span><span class="t">Neuropian<small>talent-scouting web app · live</small></span><span class="s">2026</span></a></li>
+      <li><a href="#token-barter"><span class="n">05</span><span class="t">Token Barter<small>AI-allowance marketplace, current</small></span><span class="s">2026 –</span></a></li>
+      <li><a href="#robotics"><span class="n">06</span><span class="t">Youth Robotics Program &amp; FTC<small>people, not hardware</small></span><span class="s">2026 –</span></a></li>
+    </ol>
+  </div>
+</section>
+
+<main>
+
+<!-- ============================ 01 AR GLASSES RIG ============================ -->
+<section class="project" id="ar-rig">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="n">01</span>
+      <h2>AR Glasses Rig</h2>
+      <p class="lede"><span class="status live">Worn and running</span><span>2026, ongoing</span><span>Python · OpenCV · custom tracker · printed carrier</span></p>
+    </div>
+
+    <figure class="lead free">
+      <div class="frame"><img src="assets/rig-worn.jpg" alt="Dylan wearing the rig: two world cameras on the printed carrier above the glasses, an eye camera on a boom at each temple, cables running back"></div>
+      <figcaption>The rig, worn. Two global-shutter world cameras on the 3D-printed carrier above XREAL One Pro see-through glasses; two eye cameras on booms at the temples, aimed at the inner eye corners.</figcaption>
+    </figure>
+
+    <div class="cols">
+      <dl class="specs">
+        <div class="h">Measured on this hardware</div>
+        <div><dt>Optics</dt><dd>XREAL One Pro birdbath optical see-through, driven as a second monitor at <strong>1920×1080</strong>.</dd></div>
+        <div><dt>World cams</dt><dd>2× ELP AR0234 global shutter, <strong>1920×1200</strong>, 70° FOV, <strong>914 px</strong> focal, <strong>67.0 mm</strong> baseline.</dd></div>
+        <div><dt>Eye cams</dt><dd>2× OV9281 mono NoIR global shutter, <strong>1280×800</strong>, 45° FOV, aimed down 6° and out 3°.</dd></div>
+        <div><dt>Eye tracking</dt><dd>Inner canthus as the landmark; model trained on <strong>10,000</strong> synthetic eye frames; <strong>4 px</strong> in simulation, <strong>5 px</strong> on hardware.</dd></div>
+        <div><dt>Reading</dt><dd>Live document translation reads <strong>25–28 lines</strong> at <strong>26–35 cm</strong>; plane-warped stereo keeps a tilted page registered.</dd></div>
+        <div><dt>Person tier</dt><dd>Live person-to-character replacement, both eyes, worn, ~<strong>30 fps</strong>.</dd></div>
+        <div><dt>Bandwidth</dt><dd>Four cameras on one USB 2.0 hub. Three native streams ≈ <strong>37 fps</strong> is the ceiling; four run at 640×400.</dd></div>
+        <div><dt>Verification</dt><dd><strong>23</strong> self-tests; capability inventory across <strong>78</strong> modules, every figure tagged measured or assumed.</dd></div>
+      </dl>
+
+      <div class="prose">
+        <h4>What I built</h4>
+        <p>Real-world stereo overlay. Translation, object substitution, and reactive display. Uses inner canthal tracking, machine learning algorithm to learn your face, and independent synchronized monitors for realistic stereo display. No off the shelf AR glasses do this.</p>
+        <h4>What was hard</h4>
+        <p>1 camera never shipped so I had to make do with the 2 eye cams and 2 world cams. Realistic motion tracking was very difficult because it not only required precise, active overlay, but orientation, predictive movement, and an understanding of the person's stance.</p>
+        <h4>What I learned</h4>
+        <p>Start in sim, iterate fast because things rarely work on the first try, never fixate on where you think a bug is and take a broad perspective.</p>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure class="wide free">
+        <div class="frame"><img src="assets/rig-stereo-character.jpg" alt="Stereo pair, left and right eye, of a rendered character standing in for a live tracked person, hands at their sides" loading="lazy"></div>
+        <figcaption>Left- and right-eye views as sent to the glasses: a tracked person replaced by a rendered character at their position, scale and pose. Black is transparent on the see-through display. Rendered at 31.8 fps on the worn rig.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="frame"><img src="assets/rig-character-room.jpg" alt="World-camera view of a room with a person walking toward the camera, replaced by a rendered character at the same position, scale and gait" loading="lazy"></div>
+        <figcaption>The same replacement seen through the world camera: a person walking through the room, replaced by the character at their tracked position, scale and gait. The body fit is solved per segment from the person's measured proportions. For this still the person was removed from the background using neighbouring frames; on the see-through display the character is simply drawn over them.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="frame"><img src="assets/rig-complete.jpg" alt="The complete rig off the face: four camera boards on the printed carrier zip-tied to the glasses, cables routed back" loading="lazy"></div>
+        <figcaption>The rig off the face: four cameras, one carrier, one USB hub.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="frame"><img src="assets/rig-carrier-clamped.jpg" alt="The printed carrier clamped onto the brow of the glasses, held in one hand" loading="lazy"></div>
+        <figcaption>Printed carrier clamped on the glasses' brow.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="frame"><img src="assets/rig-eyecam-boom.jpg" alt="A small global-shutter camera board mounted on a printed boom" loading="lazy"></div>
+        <figcaption>Eye-corner camera on its boom, aimed at the inner canthus.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="frame"><img src="assets/rig-wired.jpg" alt="The four-camera bank wired up on the bench in front of a laptop" loading="lazy"></div>
+        <figcaption>All four cameras wired, before a calibration run.</figcaption>
+      </figure>
+      <figure class="half contain">
+        <div class="frame"><img src="assets/rig-carrier-cad.png" alt="OpenSCAD render of the carrier on the glasses: orange printed holders and booms, grey rail and brow clamps, green IMU pocket" loading="lazy"></div>
+        <figcaption>Carrier design in OpenSCAD on a stand-in frame, orange printed holders and booms, grey rail and brow clamps, green IMU pocket. Every pocket was dimensioned from the real camera boards with calipers.</figcaption>
+      </figure>
+      <figure class="half contain">
+        <div class="frame"><img src="assets/rig-carrier-part.png" alt="OpenSCAD render of the carrier as a single printable part" loading="lazy"></div>
+        <figcaption>The carrier as one printable part.</figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><img src="assets/rig-canthus-lock.jpg" alt="Raw eye-camera frame with the tracker's green lock box on the inner eye corner" loading="lazy"></div>
+        <figcaption>What an eye camera sees. The green box is the tracker's lock on the inner eye corner; the dark shape at top is the nose-bridge support.</figcaption>
+      </figure>
+      <figure class="wide free">
+        <div class="frame"><img src="assets/rig-translate-real.jpg" alt="World-camera view of a printed Spanish page held in one hand in a room, with each paragraph's English translation composited in place over the original text" loading="lazy"></div>
+        <figcaption>Live document translation, seen through the world camera: a printed Spanish page held in hand, each block read, translated and drawn back in place at the page's measured distance and tilt.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 02 ASTEROID MINER ============================ -->
+<section class="project" id="asteroid-miner">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="n">02</span>
+      <h2>Self-Replicating Asteroid Miner</h2>
+      <p class="lede"><span class="status">Design program, Mark 5 rev E</span><span>2026, ongoing</span><span>OpenSCAD · Onshape · Python simulation</span></p>
+    </div>
+
+    <figure class="lead wide contain free">
+      <div class="frame"><img src="assets/miner-worm-bench.png" alt="Two-view CAD render of the two-metre worm bench article: exterior, and cut on the axis plane showing the screw, segments and anchor" loading="lazy"></div>
+      <figcaption>The worm, 2 m bench article: exterior and cut on the axis plane. Drill, conveyor and anchor in one machine; it never asks the ground for more force than the regolith can give.</figcaption>
+    </figure>
+
+    <div class="cols">
+      <dl class="specs">
+        <div class="h">The design</div>
+        <div><dt>Target</dt><dd>162173 Ryugu, a C-type carbonaceous chondrite: iron, nickel and water, the inputs a near-closed replication loop needs.</dd></div>
+        <div><dt>Goal</dt><dd>A solar-powered machine that builds a copy of itself from asteroid material. Replication period target <strong>0.28 yr</strong>, about 100 days.</dd></div>
+        <div><dt>Process</dt><dd>Crush, magnetic separation, hydrogen reduction and sulfur bake, carbonyl nickel, press-and-sinter powder metallurgy, wire drawing, cast basalt structure.</dd></div>
+        <div><dt>Power</dt><dd>Mirror field into thermophotovoltaics with a silicon thermal store. No batteries anywhere in the architecture.</dd></div>
+        <div><dt>Method</dt><dd>Every decision provenance-tagged recovered / revised / sourced / computed / speculative, so no number hardens without a trace.</dd></div>
+        <div><dt>Toolchain</dt><dd>Parametric CAD with compile-time assertions (the file refuses to render if a mate or rule is violated) plus an economic model that sizes each machine by predicted future dependency and emits the CAD priority queue.</dd></div>
+      </dl>
+
+      <div class="prose">
+        <h4>What I built</h4>
+        <p>Full design and CAD for a machine that lands on an asteroid, uses a burrowing worm to anchor, intakes asteroid dust, processes it, and turns it into a duplicate.</p>
+        <h4>What was hard</h4>
+        <p>My laptop fried and I lost the majority of CAD and documentation. I rebuilt with only a few pieces of CAD saved and recreated the entire architecture from memory.</p>
+        <h4>What I learned</h4>
+        <p>Always back your data up. Know every piece of your machines down to the screw. When in doubt, consult an expert and if your question is good, they will likely answer.</p>
+        
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure class="half contain">
+        <div class="frame"><img src="assets/miner-worm-head.png" alt="Render of the worm's cutting head: cylindrical body with helical flights and a crown of cutters around a central cone" loading="lazy"></div>
+        <figcaption>Cutting head. One motor drives a bevel differential whose two outputs are the cutter crown and the conveying screw, so net torque on the body is zero by construction.</figcaption>
+      </figure>
+      <figure class="half contain">
+        <div class="frame"><img src="assets/miner-worm-joint.png" alt="Render of two worm segments joined by a bellows, with trunnion pins" loading="lazy"></div>
+        <figcaption>Segment joint: bellows between a P segment and a G segment. Advance is peristaltic; the buried body is the anchor.</figcaption>
+      </figure>
+      <figure class="wide contain">
+        <div class="frame"><img src="assets/miner-worm-kit.png" alt="Exploded parts kit of the worm: head, end rings, flight screw, setae shoes, rails, pins" loading="lazy"></div>
+        <figcaption>Parts kit: one of everything a segment and the head are built from, in the order they go together.</figcaption>
+      </figure>
+      <figure class="wide contain free">
+        <div class="frame"><img src="assets/miner-worm-curve.png" alt="Render of the full worm string following a curved bore, with the collar station at one end" loading="lazy"></div>
+        <figcaption>The full string on a curved bore, collar station at the surface end.</figcaption>
+      </figure>
+      <figure class="half contain">
+        <div class="frame"><img src="assets/miner-mk4-engine.png" alt="Render of the Mark 4 aft engine assembly: a tube-wall nozzle with stiffening rings, turbopump, gas generator and valves above it" loading="lazy"></div>
+        <figcaption>Mark 4 aft engine, assembled: regeneratively cooled nozzle of 180 bifurcated tubes, LOX/LH2 turbopump on a common shaft, gas generator, coaxial injector and main valves. Designed to run on oxygen and hydrogen split from asteroid water.</figcaption>
+      </figure>
+      <figure class="half contain">
+        <div class="frame"><img src="assets/miner-carbonyl-skid.png" alt="Render of the carbonyl nickel batch skid: flanged pressure vessels, piping and valves on a steel skid frame" loading="lazy"></div>
+        <figcaption>Carbonyl nickel batch skid: pressure vessels, piping and valves on a common frame. Mark 4, rev D.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 03 JARVIS ============================ -->
+<section class="project" id="jarvis">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="n">03</span>
+      <h2>J.A.R.V.I.S.</h2>
+      <p class="lede"><span class="status live">Running</span><span>2026</span><span>hands and voice, no keyboard · Python · MediaPipe · WebSockets</span></p>
+    </div>
+
+    <figure class="lead wide free">
+      <div class="frame"><img src="assets/jarvis-hud.jpg" alt="The full JARVIS heads-up interface: systems gauges, optical array with a live camera view and a tracked hand, command index, a radial gesture map in the center, gesture control panel, activity log, and a spoken status line" loading="lazy"></div>
+      <figcaption>The heads-up interface, full screen. The camera tracks a hand in the optical array at left; the gesture map on the right binds it to the machine. Gesture control armed, optics online, microphone live.</figcaption>
+    </figure>
+
+    <div class="gallery">
+      <figure class="half panel">
+        <div class="frame"><img src="assets/jarvis-optical.jpg" alt="The optical array panel: a live camera frame with a raised hand outlined by the tracker, and readouts for hands, body and face" loading="lazy"></div>
+        <figcaption>Optical array: a raised hand, tracked live at 14 fps. Hands 1, body yes, face 90%.</figcaption>
+      </figure>
+      <figure class="half panel">
+        <div class="frame"><img src="assets/jarvis-gestures.jpg" alt="The gesture control panel: armed, with the binding table from point and pinch through swipe, open palm, fist and thumbs" loading="lazy"></div>
+        <figcaption>Gesture control, armed. Point moves the cursor, pinch clicks, pinch-drag drags, swipe switches apps, open palm opens a radial menu, thumbs up confirms. No keyboard, no mouse.</figcaption>
+      </figure>
+    </div>
+
+    <div class="cols">
+      <dl class="specs">
+        <div class="h">What it does</div>
+        <div><dt>Premise</dt><dd>Control a Mac without touching it. Hands are tracked by the camera, voice covers everything else, and a heads-up interface shows what the machine is seeing and doing.</dd></div>
+        <div><dt>Gestures</dt><dd>Hands and body tracked at up to ~<strong>30 fps</strong>: point to move the cursor, pinch to click, pinch-drag, swipe to switch apps, fist to close, open palm for a radial menu, thumbs up or down to answer a confirmation.</dd></div>
+        <div><dt>Speech</dt><dd>Wake word, spoken reply, and it stops listening for exactly as long as it is speaking so it never transcribes itself.</dd></div>
+        <div><dt>Control</dt><dd><strong>43</strong> actions (apps, windows, tabs, keyboard, mouse, media, volume, brightness, screenshots, clipboard, Shortcuts, telemetry), one registry, exposed identically to the gestures, the parser, the UI and the model.</dd></div>
+        <div><dt>Model</dt><dd>Local intent parsing first; anything unrecognized falls through to a language model that can call all 43 actions as tools.</dd></div>
+        <div><dt>Status</dt><dd>Runs live: optics, gesture control and microphone up in this capture. Accessibility permission and the local model were still pending.</dd></div>
+      </dl>
+      <div class="prose">
+        <h4>What I built</h4>
+        <p>Interactive computer interface controlled entirely by voice and gesture. JARVIS can rotate and move CAD, control games, and interact with both you and your computer.</p>
+        <h4>What was hard</h4>
+        <p>Achieving high enough accuracy to navigate detailed pages, setting up permissions for computer interactions: took surprisingly long.</p>
+        <h4>What I learned</h4>
+        <p>Make the user interface intuitive so learning to use it is seamless.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 04 NEUROPIAN ============================ -->
+<section class="project" id="neuropian">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="n">04</span>
+      <h2>Neuropian</h2>
+      <p class="lede"><span class="status live">Live</span><span>April to June 2026</span><span>Full-stack web app</span><span><a href="https://neuropian.com">neuropian.com</a></span></p>
+    </div>
+
+    <div class="cols">
+      <dl class="specs">
+        <div class="h">What it is</div>
+        <div><dt>Premise</dt><dd>Find talented people by their online activity and put them into teams to solve problems.</dd></div>
+        <div><dt>Built</dt><dd>Authentication, database, live chat with in-line translation, a six-language front end, and an autonomous scouting agent.</dd></div>
+        <div><dt>Result</dt><dd>Identified <strong>934</strong> individuals across <strong>6</strong> platforms.</dd></div>
+        <div><dt>Where</dt><dd><a href="https://neuropian.com">neuropian.com</a></dd></div>
+      </dl>
+      <div class="prose">
+        <h4>What I built</h4>
+        <p>Online talent scout, identifying talent across online platforms like Reddit and Hacker News and teaming them up to solve problems and build based on their complementary traits.</p>
+        <h4>What I learned</h4>
+        <p>You can make a great product or site but if nobody knows about it, it's worthless. Advertising is key.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 05 TOKEN BARTER ============================ -->
+<section class="project" id="token-barter">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="n">05</span>
+      <h2>Token Barter</h2>
+      <p class="lede"><span class="status live">Current project</span><span>2026, ongoing</span><span>Python · FastAPI · PostgreSQL · Redis</span><span><a href="https://thenextelon.com/ui/">thenextelon.com</a></span></p>
+    </div>
+
+    <figure class="lead wide free">
+      <div class="frame"><img src="assets/tokenbarter-publish.jpg" alt="Token Barter web app, the Publish an agent page: name, provider, model, per-token price, token caps, decision mode, system prompt and refusal rules" loading="lazy"></div>
+      <figcaption>Publish an agent: your AI, your rules. Name, provider, model, price per input token, caps per minute and per day, a system prompt, and a refusal regex.</figcaption>
+    </figure>
+
+    <div class="cols">
+      <dl class="specs">
+        <div class="h">What it is</div>
+        <div><dt>Premise</dt><dd>A peer-to-peer marketplace where people swap unused AI usage allowances across five providers through an internal ledger. No money and no crypto move between users.</dd></div>
+        <div><dt>Proxy</dt><dd>A metered streaming proxy spends those allowances against master keys, hold, capped <strong>max_tokens</strong>, per-chunk metering, 1-second ticks, sever, settle.</dd></div>
+        <div><dt>Order book</dt><dd>Price-time matching at the maker's price, escrow, <strong>1%</strong> fee per leg into a platform float.</dd></div>
+        <div><dt>Pricing</dt><dd>Value-based rates routed through USD, <strong>0.1–1%</strong> conversion spread, float-inventory demand skew, cheapest-of-tier routing.</dd></div>
+        <div><dt>Ledger</dt><dd>Append-only Postgres ledger, Redis hot balances, atomic Lua charge that clamps at zero, per-second usage commits, stale-session reaper.</dd></div>
+        <div><dt>Security</dt><dd>AES-256-GCM envelope encryption for users' own keys; per-user rate limits, concurrent-stream cap, secret redaction in logs.</dd></div>
+        <div><dt>Size</dt><dd><strong>43</strong> Python modules, <strong>~11,900</strong> lines, tests across matching, cache, ledger, metering, CLI and intent routing.</dd></div>
+        <div><dt>Status</dt><dd>Live at <a href="https://thenextelon.com/ui/">thenextelon.com</a>, in testing. Proven with Anthropic tokens; other providers coming.</dd></div>
+      </dl>
+
+      <div class="prose">
+<pre><span class="c"># the whole thing from a cold start</span>
+tb init      <span class="c"># sign in, accept terms, verify, publish, serve</span>
+tb ask       <span class="c"># spend allowance through the metered proxy</span>
+tb serve     <span class="c"># publish an agent for every vendor key you hold</span>
+tb doctor    <span class="c"># name anything that is wrong</span></pre>
+        <h4>What I built</h4>
+        <p>Token exchange where you can put your AI/tokens up for use to answer other people's prompts in exchange for on site currency. That currency can then be used to prompt other user's AI. Allows you to exchange some of your tokens from one provider for usage in another's AI.</p>
+        <h4>What was hard</h4>
+        <p>Not breaking any TOS: most major companies don't let people do this in a direct exchange so I designed an indirect exchange that follows all rules.</p>
+        <h4>Progress</h4>
+        <p>Still in testing, proven to work with Anthropic tokens, other providers coming soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 06 ROBOTICS ============================ -->
+<section class="project" id="robotics">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="n">06</span>
+      <h2>Youth Robotics Program &amp; FTC</h2>
+      <p class="lede"><span class="status live">Running</span><span>2026, ongoing</span><span>Kauai, Hawaii</span></p>
+    </div>
+
+    <div class="cols">
+      <dl class="specs">
+        <div class="h">What exists because of it</div>
+        <div><dt>Problem</dt><dd>Most of the school's robotics team was graduating. No STEM program for elementary students; five people on the FTC team.</dd></div>
+        <div><dt>What I did</dt><dd>Founded the Youth Robotics Program: reached <strong>25+</strong> teachers, secured board-member funding, recruited high-school mentors, built the curriculum with the FTC captain.</dd></div>
+        <div><dt>Reach</dt><dd>A dozen students of all ages brought into engineering, working on real robots.</dd></div>
+        <div><dt>Competition</dt><dd>FTC: build, design and alliance negotiation on a five-person team, <strong>2nd in Hawaii</strong>, qualified for Canada Cup.</dd></div>
+      </dl>
+      <div class="prose">
+        <h4>Why I built this</h4>
+        <p>My school's small FTC team was going to lose most of its members upon my graduation. I started the program to prepare elementary students to join next year so the FTC team wouldn't cease.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="plain" id="elsewhere">
+  <div class="wrap">
+    <h2>Elsewhere</h2>
+    <ul class="list">
+      <li><span class="k">Research</span><span>Co-author on two posters presented at the American Psychological Association national convention, through The Good Student. Data analysis in R.</span></li>
+      <li><span class="k">National History Day</span><span>Won regionals and advanced to states with a paper built around my grandmother's flight from Poland.</span></li>
+      <li><span class="k">Guitar</span><span>Eight years, classical and electric. Villa-Lobos Etude 7 through metal bands.</span></li>
+    </ul>
+    
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>parahuman.net</span>
+    <span><a href="mailto:dylanleitenberg@gmail.com">dylanleitenberg@gmail.com</a> · <a href="https://github.com/dylanleitenberg-tech">github.com/dylanleitenberg-tech</a></span>
+    <span>Dylan Leitenberg · Kauai, Hawaii · 2026</span>
+  </div>
+</footer>
+
+<script>
+// Counts the unwritten sections and says so at the top of the page.
+// When every .slot is gone the banner disappears on its own.
+(function () {
+  var slots = document.querySelectorAll('.slot');
+  var banner = document.getElementById('todo-banner');
+  if (!slots.length) return;
+  banner.textContent = slots.length + ' section' + (slots.length === 1 ? '' : 's') +
+    ' still unwritten: this page is not ready to submit';
+  banner.hidden = false;
+})();
+</script>
+
+</body>
+</html>

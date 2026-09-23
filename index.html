@@ -7,14 +7,13 @@
 <meta name="description" content="Dylan Leitenberg builds: an AR glasses rig, a self-replicating asteroid miner, a hands-and-voice computer interface, a talent scout, a token exchange.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="todo-banner" hidden></div>
-
 <nav class="top" aria-label="Sections">
+  <div id="progress"></div>
   <div class="wrap">
     <a class="brand" href="#top">Dylan Leitenberg</a>
     <ul>
@@ -50,7 +49,7 @@
       </div>
     </div>
     <!-- Portrait: guitar in a tree, chicken on the hat -->
-    <img class="portrait" src="assets/dylan-guitar.jpg" alt="Dylan Leitenberg playing classical guitar in a tree, in a straw hat and sunglasses, with a chicken perched on the hat">
+    <div class="portrait-wrap"><img class="portrait" src="assets/dylan-guitar.jpg" alt="Dylan Leitenberg playing classical guitar in a tree, in a straw hat and sunglasses, with a chicken perched on the hat"></div>
   </div>
 </header>
 
@@ -58,12 +57,12 @@
   <div class="wrap">
     <h2>Index</h2>
     <ol class="index">
-      <li><a href="#ar-rig"><span class="n">01</span><span class="t">AR Glasses Rig<small>Hardware, worn, running</small></span></a></li>
-      <li><a href="#asteroid-miner"><span class="n">02</span><span class="t">Self-Replicating Asteroid Miner<small>Design program, Mark 5</small></span></a></li>
-      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a Mac, no keyboard</small></span></a></li>
-      <li><a href="#neuropian"><span class="n">04</span><span class="t">Neuropian<small>Talent-scouting web app · live</small></span></a></li>
-      <li><a href="#token-barter"><span class="n">05</span><span class="t">Token Barter<small>AI-allowance marketplace, current</small></span></a></li>
-      <li><a href="#robotics"><span class="n">06</span><span class="t">Youth Robotics Program<small>People, not hardware</small></span></a></li>
+      <li><a href="#ar-rig"><span class="n">01</span><span class="t">AR Glasses Rig<small>Hardware, worn, running</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#asteroid-miner"><span class="n">02</span><span class="t">Self-Replicating Asteroid Miner<small>Design program, Mark 5</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a Mac, no keyboard</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#neuropian"><span class="n">04</span><span class="t">Neuropian<small>Talent-scouting web app · live</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#token-barter"><span class="n">05</span><span class="t">Token Barter<small>AI-allowance marketplace, current</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#robotics"><span class="n">06</span><span class="t">Youth Robotics Program<small>People, not hardware</small></span><span class="arrow">↗</span></a></li>
     </ol>
   </div>
 </section>
@@ -162,7 +161,7 @@
       <p class="lede"><span class="status">Design program, Mark 5 rev E</span><span>OpenSCAD · Onshape · Python simulation</span></p>
     </div>
 
-    <figure class="lead wide contain free">
+    <figure class="lead wide plate free">
       <div class="frame"><img src="assets/miner-worm-bench.png" alt="Two-view CAD drawing of a two-metre worm test article: exterior, and cut on the axis plane showing the screw, segments and anchor pads"></div>
       <figcaption>The worm, drawn as a 2 m terrestrial test article for a sand bed: drill, conveyor and anchor in one machine, every dimension in the drawing a value in a single parameter file. Building it is the next step; the pad-press load it calls out is the first experiment.</figcaption>
     </figure>
@@ -304,7 +303,7 @@
       <p class="lede"><span class="status live">Current project</span><span>Python · FastAPI · PostgreSQL · Redis</span><span><a href="https://thenextelon.com/ui/">thenextelon.com</a></span></p>
     </div>
 
-    <figure class="lead wide free">
+    <figure class="lead wide plate free">
       <div class="frame"><img src="assets/tokenbarter-publish.jpg" alt="Token Barter web app, the Publish an agent page: name, provider, model, per-token price, token caps, decision mode, system prompt and refusal rules" loading="lazy"></div>
       <figcaption>Publish an agent: your AI, your rules. Name, provider, model, price per input token, caps per minute and per day, a system prompt, and a refusal regex.</figcaption>
     </figure>
@@ -378,20 +377,30 @@
   <div class="wrap">
     <span>parahuman.net</span>
     <span><a href="mailto:dylanleitenberg@gmail.com">dylanleitenberg@gmail.com</a> · <a href="https://github.com/dylanleitenberg-tech">github.com/dylanleitenberg-tech</a></span>
-    <span>Dylan Leitenberg · Kauai, Hawaii · 2026</span>
+    <span>Dylan Leitenberg · Kauai, Hawaii · 2026 · <a href="https://github.com/dylanleitenberg-tech/parahuman">source of this page</a></span>
   </div>
 </footer>
 
 <script>
-// Counts the unwritten sections and says so at the top of the page.
-// When every .slot is gone the banner disappears on its own.
 (function () {
-  var slots = document.querySelectorAll('.slot');
-  var banner = document.getElementById('todo-banner');
-  if (!slots.length) return;
-  banner.textContent = slots.length + ' section' + (slots.length === 1 ? '' : 's') +
-    ' still unwritten: this page is not ready to submit';
-  banner.hidden = false;
+  var root = document.documentElement; root.classList.add('js');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sel = 'header.hero .wrap > *, section.index > .wrap > *, ol.index li, .p-head, .lead, .cols > *, .gallery figure, section.plain > .wrap > *, footer .wrap';
+  var els = document.querySelectorAll(sel);
+  els.forEach(function (el) {
+    var kind = el.classList.contains('p-head') ? 'left' : '';
+    el.setAttribute('data-reveal', kind);
+    var sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+    el.style.setProperty('--d', (reduce ? 0 : Math.min(sib, 5) * 70) + 'ms');
+  });
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+  els.forEach(function (el) { io.observe(el); });
+  var bar = document.getElementById('progress');
+  function tick() { var h = root; var max = h.scrollHeight - h.clientHeight; bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%'; }
+  window.addEventListener('scroll', tick, { passive: true }); tick();
 })();
 </script>
 

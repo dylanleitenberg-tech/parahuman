@@ -59,7 +59,7 @@
     <ol class="index">
       <li><a href="#ar-rig"><span class="n">01</span><span class="t">AR Glasses Rig<small>Hardware, worn, running</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#asteroid-miner"><span class="n">02</span><span class="t">Self-Replicating Asteroid Miner<small>Design program, Mark 5</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a Mac, no keyboard</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a Mac, no keyboard. CAD you turn in the air.</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#neuropian"><span class="n">04</span><span class="t">Neuropian<small>Talent-scouting web app · live</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#token-barter"><span class="n">05</span><span class="t">Token Barter<small>AI-allowance marketplace, current</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#robotics"><span class="n">06</span><span class="t">Youth Robotics Program<small>People, not hardware</small></span><span class="arrow">↗</span></a></li>
@@ -225,7 +225,7 @@
     <div class="p-head">
       <span class="n">03</span>
       <h2>J.A.R.V.I.S.</h2>
-      <p class="lede"><span class="status live">Running</span><span>hands and voice, no keyboard · Python · MediaPipe · WebSockets</span></p>
+      <p class="lede"><span class="status live">Running</span><span>hands and voice, no keyboard · holographic CAD · Python · MediaPipe · three.js</span></p>
     </div>
 
     <figure class="lead wide free">
@@ -242,6 +242,14 @@
         <div class="frame"><img src="assets/jarvis-gestures.jpg" alt="The gesture control panel: armed, with the binding table from point and pinch through swipe, open palm, fist and thumbs" loading="lazy"></div>
         <figcaption>Gesture control, armed. Point moves the cursor, pinch clicks, pinch-drag drags, swipe switches apps, open palm opens a radial menu, thumbs up confirms. No keyboard, no mouse.</figcaption>
       </figure>
+      <figure class="wide free">
+        <div class="frame"><img src="assets/jarvis-holo-worm.jpg" alt="The JARVIS model viewer showing the worm cutting head as a glowing cyan hologram over a grid, with the hint: pinch to turn, two fingers to slide, both hands to zoom" loading="lazy"></div>
+        <figcaption>Holographic CAD in the interface: the worm's cutting head, 176,700 triangles, compiled from its OpenSCAD source when asked for by name. Turned by pinching and moving a hand in the air; no mouse, no CAD application open.</figcaption>
+      </figure>
+      <figure class="half free">
+        <div class="frame"><img src="assets/jarvis-holo-mite.jpg" alt="The JARVIS model viewer showing the MITE manipulator as a cyan hologram" loading="lazy"></div>
+        <figcaption>The MITE manipulator, the same way. Any model in the project folders can be called up by name.</figcaption>
+      </figure>
     </div>
 
     <div class="cols">
@@ -249,6 +257,7 @@
         <div class="h">What it does</div>
         <div><dt>Premise</dt><dd>Control a Mac without touching it. Hands are tracked by the camera, voice covers everything else, and a heads-up interface shows what the machine is seeing and doing.</dd></div>
         <div><dt>Gestures</dt><dd>Hands and body tracked at up to ~<strong>30 fps</strong>: point to move the cursor, pinch to click, pinch-drag, swipe to switch apps, fist to close, open palm for a radial menu, thumbs up or down to answer a confirmation.</dd></div>
+        <div><dt>CAD</dt><dd>Say "show the worm" and the model appears in the interface; pinch and move to turn it, two fingers to slide it, spread both hands to zoom. STL is read directly and .scad is compiled live, so the part you are turning is the current source. The same gestures drive the viewport in OpenSCAD, Blender, Onshape and Fusion, each with its own orbit binding.</dd></div>
         <div><dt>Speech</dt><dd>Wake word, spoken reply, and it stops listening for exactly as long as it is speaking so it never transcribes itself.</dd></div>
         <div><dt>Control</dt><dd><strong>43</strong> actions (apps, windows, tabs, keyboard, mouse, media, volume, brightness, screenshots, clipboard, Shortcuts, telemetry), one registry, exposed identically to the gestures, the parser, the UI and the model.</dd></div>
         <div><dt>Model</dt><dd>Local intent parsing first; anything unrecognized falls through to a language model that can call all 43 actions as tools.</dd></div>

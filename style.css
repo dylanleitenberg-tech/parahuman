@@ -1,5 +1,5 @@
 /* parahuman.net
-   Black, off-white, Mars red. Geist for words, JetBrains Mono for data.
+   Black, off-white, Mars red. Syne for display, Inter for reading, JetBrains Mono for data.
    Reveal on scroll; motion off when the OS asks for it. */
 
 :root {
@@ -17,7 +17,8 @@
   --red-dim: #6e2612;
   --red-glow: rgba(210, 69, 31, 0.16);
 
-  --sans: "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --display: "Syne", "Space Grotesk", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --gutter: 16px;
@@ -80,8 +81,8 @@ header.hero::before { content: ""; position: absolute; inset: -20% -10% auto -10
 header.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 56px; align-items: end; }
 .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin: 0 0 26px; }
 .kicker::before { content: ""; display: inline-block; width: 28px; height: 1px; background: var(--red); margin-right: 14px; vertical-align: 4px; }
-h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(64px, 11vw, 136px); line-height: 0.9; letter-spacing: -0.045em; margin: 0 0 34px; color: var(--ink); }
-.tagline { font-size: clamp(24px, 3.2vw, 36px); font-weight: 300; line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); max-width: min(48ch, 100%); margin: 0 0 36px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(60px, 10.5vw, 128px); line-height: 0.92; letter-spacing: -0.035em; margin: 0 0 34px; color: var(--ink); }
+.tagline { font-family: var(--display); font-size: clamp(24px, 3.2vw, 36px); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); max-width: min(48ch, 100%); margin: 0 0 36px; }
 .meta { font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 26px; }
 .meta span + span::before { content: "/"; margin-right: 22px; color: var(--line-2); }
 .links { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -103,7 +104,7 @@ ol.index li a:hover { background: var(--bg-2); padding-left: 16px; }
 ol.index li a:hover .t { color: var(--red-2); }
 ol.index li a:hover .arrow { opacity: 1; transform: translate(0, 0); }
 ol.index .n { font-family: var(--mono); font-size: 13px; color: var(--red); }
-ol.index .t { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; transition: color .2s; }
+ol.index .t { font-family: var(--display); font-size: 27px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; transition: color .2s; }
 ol.index .t small { display: block; font-size: 14px; font-weight: 400; color: var(--ink-3); margin-top: 4px; letter-spacing: 0; }
 ol.index .arrow { font-family: var(--mono); color: var(--red); opacity: 0; transform: translate(-6px, 6px); transition: opacity .25s, transform .3s var(--ease); }
 
@@ -111,7 +112,7 @@ ol.index .arrow { font-family: var(--mono); color: var(--red); opacity: 0; trans
 section.project { padding: 112px 0 88px; border-bottom: 1px solid var(--line); counter-increment: project; counter-reset: fig; position: relative; }
 .p-head { display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: baseline; margin: 0 0 14px; }
 .p-head .n { font-family: var(--mono); font-size: 14px; color: var(--red); }
-.p-head h2 { font-family: var(--sans); font-weight: 600; font-size: clamp(40px, 6.4vw, 76px); line-height: 0.98; letter-spacing: -0.035em; margin: 0; color: var(--ink); }
+.p-head h2 { font-family: var(--display); font-weight: 700; font-size: clamp(38px, 6vw, 72px); line-height: 1.0; letter-spacing: -0.03em; margin: 0; color: var(--ink); }
 .lede { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px 20px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); margin: 0 0 44px; }
 .lede .status { color: var(--ink-2); }
 .lede .status::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ink-3); margin-right: 9px; vertical-align: 1px; }
@@ -163,7 +164,7 @@ figcaption::before { counter-increment: fig; content: counter(project, decimal-l
 
 /* ---------- misc ---------- */
 section.plain { padding: 88px 0; border-bottom: 1px solid var(--line); }
-section.plain h2 { font-family: var(--sans); font-weight: 600; font-size: clamp(32px, 4.4vw, 48px); letter-spacing: -0.03em; margin: 0 0 28px; }
+section.plain h2 { font-family: var(--display); font-weight: 700; font-size: clamp(32px, 4.4vw, 48px); letter-spacing: -0.03em; margin: 0 0 28px; }
 ul.list { list-style: none; margin: 0; padding: 0; max-width: 76ch; border-top: 1px solid var(--line); }
 ul.list li { display: grid; grid-template-columns: 160px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; color: var(--ink-2); }
 ul.list .k { font-family: var(--mono); font-size: 12px; color: var(--red); padding-top: 3px; letter-spacing: 0.04em; }

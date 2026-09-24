@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://parahuman.net/sitemap.xml

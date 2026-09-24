@@ -273,8 +273,8 @@
         <div><dt>Model</dt><dd>Fixed phrases are parsed locally in about a millisecond, no model involved. Anything else goes to Claude Sonnet with the part's dimensions and the last few turns; a local Qwen3 8B through Ollama is the fallback. When a request is ambiguous it asks which dimension you meant instead of guessing. Geometry edits go to Claude Opus 5.5.</dd></div>
         <div><dt>Memory</dt><dd>Facts you tell it to remember survive restarts, and what you opened and edited is kept as a running history. When a project's model is on screen it reads that project's own notes. It speaks up unprompted only when a watched condition becomes true (unsaved edits, low disk), once, not for as long as it stays true.</dd></div>
         <div><dt>Verification</dt><dd>Seven test suites pass: intents, gestures, CAD driving, dimension editing, STEP editing, memory and alerts, model backends. Synthetic hand frames drive the gesture tests.</dd></div>
-        <div><dt>Status</dt><dd>Runs live: camera, gestures, voice, Claude and the local fallback. One-line installers for macOS, Windows and Linux, no administrator rights needed, checked on all three by automated installs; local model through Ollama, or bring your own Claude key. The macOS Accessibility grant, which keyboard, mouse and window control need on the Mac, is still pending.</dd></div>
-        <div><dt>Source</dt><dd><a href="https://github.com/dylanleitenberg-tech/JARVIS">github.com/dylanleitenberg-tech/JARVIS</a></dd></div>
+        <div><dt>Status</dt><dd>Runs live: camera, gestures, voice, Claude and the local fallback. Built for macOS, Windows and Linux, with one-line installers that need no administrator rights; installed and run on macOS so far. Local model through Ollama, or bring your own Claude key. The macOS Accessibility grant, which keyboard, mouse and window control need on the Mac, is still pending.</dd></div>
+        <div><dt>Source</dt><dd><a href="https://github.com/dylanleitenberg-tech/JARVIS">github.com/dylanleitenberg-tech/JARVIS</a>, open source under the MIT license.</dd></div>
       </dl>
       <div class="prose">
         <h4>What I built</h4>

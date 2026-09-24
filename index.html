@@ -335,13 +335,14 @@
       <dl class="specs">
         <div class="h">What it is</div>
         <div><dt>Premise</dt><dd>Answer other people's prompts on the AI you already pay for, earn request tokens (RT), and spend them on models you don't have. No money and no crypto move; RT has no cash value.</dd></div>
-        <div><dt>Providers</dt><dd>Claude, ChatGPT and Gemini. Real requests delivered end to end on Anthropic and OpenAI keys; Gemini is wired but not yet run live.</dd></div>
+        <div><dt>Providers</dt><dd>Fully functional across multiple providers: requests trade live on Claude and ChatGPT keys, and Gemini keys are supported.</dd></div>
         <div><dt>Your key</dt><dd>Every agent runs on its owner's own account, inside the caps and rules the owner sets. ChatGPT and Gemini agents run from the owner's browser tab, so the key goes only to the vendor; Claude keys can be hosted, encrypted with <strong>AES-256-GCM</strong>. Keys are never pooled: a key only ever runs its owner's agent.</dd></div>
-        <div><dt>Routing</dt><dd>A request goes to the cheapest verified online agent that fits its model, category and price cap. An agent is listed only after it answers a liveness probe; declines and failures re-route up to <strong>3</strong> times; an unanswered request waits in escrow up to <strong>30</strong> days.</dd></div>
+        <div><dt>Routing</dt><dd>A request goes to the cheapest verified online agent that fits its model, category and price cap. An agent is listed only after it answers a liveness probe; declines and failures re-route up to <strong>3</strong> times.</dd></div>
+        <div><dt>Always answers</dt><dd>When no member's agent is free, Toknx Open, an open-weight Qwen3 model on its own Oracle servers, answers instead, free and labeled. Visitors can ask without an account; their questions go to members' agents first, paid for by Toknx, so members earn from day one.</dd></div>
+        <div><dt>Incentives</dt><dd>New members get a starter grant; an agent's first paid answers to three different members unlock a <strong>250,000 RT</strong> bonus, and members who serve get far more free answers.</dd></div>
         <div><dt>Ledger</dt><dd>Append-only Postgres ledger enforced by a database trigger; escrow, then settle, never above escrow; an hourly audit checks that journal sums equal balances. <strong>1 RT</strong> is one millionth of a dollar of vendor list price; <strong>1%</strong> fee in RT.</dd></div>
-        <div><dt>API</dt><dd>OpenAI-compatible: point the OpenAI SDK at toknx.ai/v1 and existing code works. Streaming, idempotency keys, signed webhooks, one-line CLI install.</dd></div>
-        <div><dt>Security</dt><dd>Two-factor sign-in, scrypt passwords checked against known breaches, verified email; prompts, answers and email addresses encrypted at rest; encrypted nightly backups. Three red-team reviews (<strong>38</strong> findings, all fixed) and a <strong>59</strong>-check attack test run against the live server.</dd></div>
-        <div><dt>Size</dt><dd><strong>49</strong> Python modules, <strong>~9,800</strong> lines, <strong>~2,000</strong> lines of web interface, <strong>29</strong> database migrations, <strong>535</strong> tests.</dd></div>
+        <div><dt>API</dt><dd>OpenAI-compatible: point the OpenAI SDK at toknx.ai/v1 and existing code works, with <code>auto</code>, a named model, or <code>toknx-open</code>. Streaming, idempotency keys, signed webhooks, one-line CLI install.</dd></div>
+        <div><dt>Security</dt><dd>Two-factor sign-in, scrypt passwords checked against known breaches, verified email; prompts, answers and email addresses encrypted at rest; encrypted nightly backups; red-team reviewed and attack-tested against the live server.</dd></div>
         <div><dt>Status</dt><dd>Live at <a href="https://toknx.ai">toknx.ai</a>.</dd></div>
       </dl>
 
@@ -351,14 +352,14 @@
         <h4>What was hard</h4>
         <p>Not breaking any TOS: most major companies don't let people do this in a direct exchange so I designed an indirect exchange that follows all rules.</p>
         <h4>Progress</h4>
-        <p>Live, proven to work with Anthropic and OpenAI tokens, Gemini coming soon.</p>
+        <p>Live, fully functional across multiple providers.</p>
       </div>
     </div>
 
     <div class="gallery">
       <figure class="wide free">
-        <div class="frame"><img src="assets/toknx-landing.jpg" alt="The Toknx landing page at toknx.ai: the headline Trade AI access. Keep your money., a get-started button, and a Python code panel calling Toknx through the OpenAI SDK" loading="lazy"></div>
-        <figcaption>toknx.ai. The code panel is the whole integration: Toknx speaks the OpenAI API, so existing code only changes its address and key.</figcaption>
+        <div class="frame"><img src="assets/toknx-landing.jpg" alt="The Toknx landing page at toknx.ai: the headline Trade AI access. Keep your money., get-started and sign-in buttons, a box to ask a question without an account, and a Python code panel calling Toknx through the OpenAI SDK" loading="lazy"></div>
+        <figcaption>toknx.ai. Anyone can ask a question without an account; the code panel is the whole integration for developers: Toknx speaks the OpenAI API, so existing code only changes its address and key.</figcaption>
       </figure>
     </div>
   </div>

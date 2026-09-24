@@ -28,7 +28,7 @@
       <li><a href="#asteroid-miner">02 Miner</a></li>
       <li><a href="#jarvis">03 JARVIS</a></li>
       <li><a href="#neuropian">04 Neuropian</a></li>
-      <li><a href="#token-barter">05 Barter</a></li>
+      <li><a href="#toknx">05 Toknx</a></li>
       <li><a href="#robotics">06 Robotics</a></li>
     </ul>
   </div>
@@ -66,9 +66,9 @@
     <ol class="index">
       <li><a href="#ar-rig"><span class="n">01</span><span class="t">AR Glasses Rig<small>Hardware, worn, running</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#asteroid-miner"><span class="n">02</span><span class="t">Self-Replicating Asteroid Miner<small>Design program, Mark 5</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a Mac, no keyboard. CAD you turn in the air.</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a Mac, no keyboard. CAD you turn in the air and edit by voice.</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#neuropian"><span class="n">04</span><span class="t">Neuropian<small>Talent-scouting web app · live</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#token-barter"><span class="n">05</span><span class="t">Token Barter<small>AI-allowance marketplace, current</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#toknx"><span class="n">05</span><span class="t">Toknx<small>AI-access exchange · live at toknx.ai</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#robotics"><span class="n">06</span><span class="t">Youth Robotics Program<small>People, not hardware</small></span><span class="arrow">↗</span></a></li>
     </ol>
   </div>
@@ -232,7 +232,7 @@
     <div class="p-head">
       <span class="n">03</span>
       <h2>J.A.R.V.I.S.</h2>
-      <p class="lede"><span class="status live">Running</span><span>hands and voice, no keyboard · holographic CAD · Python · MediaPipe · three.js</span></p>
+      <p class="lede"><span class="status live">Running</span><span>hands and voice, no keyboard · holographic CAD, edited by voice · Python · MediaPipe · three.js · Claude</span></p>
     </div>
 
     <figure class="lead wide free">
@@ -265,10 +265,14 @@
         <div><dt>Premise</dt><dd>Control a Mac without touching it. Hands are tracked by the camera, voice covers everything else, and a heads-up interface shows what the machine is seeing and doing.</dd></div>
         <div><dt>Gestures</dt><dd>Hands and body tracked at up to ~<strong>30 fps</strong>: point to move the cursor, pinch to click, pinch-drag, swipe to switch apps, fist to close, open palm for a radial menu, thumbs up or down to answer a confirmation. Only the user's hands drive: the hand already being followed keeps control, and a second person's hand cannot take over.</dd></div>
         <div><dt>CAD</dt><dd>Say "show the worm" and the model appears in the interface; move an open hand to turn it, pull the hand in or close the fingers to zoom in, push it away or open them to zoom out; pinch and move also turns, two fingers slide. A small camera box in the corner shows the hand doing it. STL is read directly, .scad is compiled live and STEP is converted on first use, so the part you are turning is the current source. The same gestures drive the viewport in OpenSCAD, Blender, Onshape and Fusion, each with its own orbit binding.</dd></div>
+        <div><dt>Editing</dt><dd>Say what to change and the part on screen is rebuilt. An OpenSCAD model gets a panel of its own dimensions, set by voice ("set the lens width to 52"), slider or pinch-drag; the glasses frame rebuilds in <strong>0.12–0.16 s</strong>. Anything the dimensions can't express goes to Claude Opus 5.5, which edits the source, or writes a checked script against a STEP assembly's named parts. On the <strong>306</strong>-part aft engine, "make the nozzle 20 percent longer" took it from <strong>3,420</strong> to <strong>3,855 mm</strong>, throat fixed, nozzle still attached. Nothing is written until "save", and a save never overwrites the original.</dd></div>
+        <div><dt>Checks</dt><dd>Every geometry edit is checked before it stays. The assembly's size is compared before and after, and anything grown past <strong>1.6×</strong> goes back for repair; this was added after three stacked stretches wrecked an engine. Then the viewer photographs the result from three angles and the model judges the pictures; an edit that looks wrong is undone and repaired.</dd></div>
         <div><dt>Speech</dt><dd>Wake word, spoken reply, and it stops listening for exactly as long as it is speaking so it never transcribes itself.</dd></div>
         <div><dt>Control</dt><dd><strong>43</strong> actions (apps, windows, tabs, keyboard, mouse, media, volume, brightness, screenshots, clipboard, Shortcuts, telemetry), one registry, exposed identically to the gestures, the parser, the UI and the model.</dd></div>
-        <div><dt>Model</dt><dd>Local intent parsing first; anything unrecognized falls through to a language model that can call all 43 actions as tools.</dd></div>
-        <div><dt>Status</dt><dd>Runs live: optics, gesture control and microphone up in this capture. Accessibility permission and the local model were still pending.</dd></div>
+        <div><dt>Model</dt><dd>Fixed phrases are parsed locally in about a millisecond, no model involved. Anything else goes to Claude Sonnet with the part's dimensions and the last few turns; a local Qwen3 8B through Ollama is the fallback. When a request is ambiguous it asks which dimension you meant instead of guessing. Geometry edits go to Claude Opus 5.5.</dd></div>
+        <div><dt>Memory</dt><dd>Facts you tell it to remember survive restarts, and what you opened and edited is kept as a running history. When a project's model is on screen it reads that project's own notes. It speaks up unprompted only when a watched condition becomes true (unsaved edits, low disk), once, not for as long as it stays true.</dd></div>
+        <div><dt>Verification</dt><dd>Seven test suites pass: intents, gestures, CAD driving, dimension editing, STEP editing, memory and alerts, model backends. Synthetic hand frames drive the gesture tests.</dd></div>
+        <div><dt>Status</dt><dd>Runs live: camera, gestures, voice, Claude and the local fallback. The macOS Accessibility grant, which keyboard, mouse and window control need, is still pending.</dd></div>
         <div><dt>Source</dt><dd><a href="https://github.com/dylanleitenberg-tech/JARVIS">github.com/dylanleitenberg-tech/JARVIS</a></dd></div>
       </dl>
       <div class="prose">
@@ -312,31 +316,33 @@
   </div>
 </section>
 
-<!-- ============================ 05 TOKEN BARTER ============================ -->
-<section class="project" id="token-barter">
+<!-- ============================ 05 TOKNX ============================ -->
+<section class="project" id="toknx">
+  <span id="token-barter"></span>
   <div class="wrap">
     <div class="p-head">
       <span class="n">05</span>
-      <h2>Token Barter</h2>
-      <p class="lede"><span class="status live">Current project</span><span>Python · FastAPI · PostgreSQL · Redis</span><span><a href="https://thenextelon.com/ui/">thenextelon.com</a></span></p>
+      <h2>Toknx</h2>
+      <p class="lede"><span class="status live">Live, beta</span><span>formerly Token Barter</span><span>Python · FastAPI · PostgreSQL · Redis</span><span><a href="https://toknx.ai">toknx.ai</a></span></p>
     </div>
 
     <figure class="lead wide plate free">
-      <div class="frame"><img src="assets/tokenbarter-publish.jpg" alt="Token Barter web app, the Publish an agent page: name, provider, model, per-token price, token caps, decision mode, system prompt and refusal rules" loading="lazy"></div>
-      <figcaption>Publish an agent: your AI, your rules. Name, provider, model, price per input token, caps per minute and per day, a system prompt, and a refusal regex.</figcaption>
+      <div class="frame"><img src="assets/toknx-landing.jpg" alt="The Toknx landing page at toknx.ai: the headline Trade AI access. Keep your money., a get-started button, a live count of verified agents on the market, and a Python code panel calling Toknx through the OpenAI SDK" loading="lazy"></div>
+      <figcaption>toknx.ai, live. The market line is read from the running server; the code panel is the whole integration, since Toknx speaks the OpenAI API.</figcaption>
     </figure>
 
     <div class="cols">
       <dl class="specs">
         <div class="h">What it is</div>
-        <div><dt>Premise</dt><dd>A peer-to-peer marketplace where people swap unused AI usage allowances across five providers through an internal ledger. No money and no crypto move between users.</dd></div>
-        <div><dt>Proxy</dt><dd>A metered streaming proxy spends those allowances against master keys, hold, capped <strong>max_tokens</strong>, per-chunk metering, 1-second ticks, sever, settle.</dd></div>
-        <div><dt>Order book</dt><dd>Price-time matching at the maker's price, escrow, <strong>1%</strong> fee per leg into a platform float.</dd></div>
-        <div><dt>Pricing</dt><dd>Value-based rates routed through USD, <strong>0.1–1%</strong> conversion spread, float-inventory demand skew, cheapest-of-tier routing.</dd></div>
-        <div><dt>Ledger</dt><dd>Append-only Postgres ledger, Redis hot balances, atomic Lua charge that clamps at zero, per-second usage commits, stale-session reaper.</dd></div>
-        <div><dt>Security</dt><dd>AES-256-GCM envelope encryption for users' own keys; per-user rate limits, concurrent-stream cap, secret redaction in logs.</dd></div>
-        <div><dt>Size</dt><dd><strong>43</strong> Python modules, <strong>~11,900</strong> lines, tests across matching, cache, ledger, metering, CLI and intent routing.</dd></div>
-        <div><dt>Status</dt><dd>Live at <a href="https://thenextelon.com/ui/">thenextelon.com</a>, in testing. Proven with Anthropic tokens; other providers coming.</dd></div>
+        <div><dt>Premise</dt><dd>Answer other people's prompts on the AI you already pay for, earn request tokens (RT), and spend them on models you don't have. No money and no crypto move; RT has no cash value.</dd></div>
+        <div><dt>Providers</dt><dd>Claude, ChatGPT and Gemini. Real requests delivered end to end on Anthropic and OpenAI keys; Gemini is wired but not yet run live.</dd></div>
+        <div><dt>Your key</dt><dd>Every agent runs on its owner's own account, inside the caps and rules the owner sets. ChatGPT and Gemini agents run from the owner's browser tab, so the key goes only to the vendor; Claude keys can be hosted, encrypted with <strong>AES-256-GCM</strong>. Keys are never pooled: a key only ever runs its owner's agent.</dd></div>
+        <div><dt>Routing</dt><dd>A request goes to the cheapest verified online agent that fits its model, category and price cap. An agent is listed only after it answers a liveness probe; declines and failures re-route up to <strong>3</strong> times; an unanswered request waits in escrow up to <strong>30</strong> days.</dd></div>
+        <div><dt>Ledger</dt><dd>Append-only Postgres ledger enforced by a database trigger; escrow, then settle, never above escrow; an hourly audit checks that journal sums equal balances. <strong>1 RT</strong> is one millionth of a dollar of vendor list price; <strong>1%</strong> fee in RT.</dd></div>
+        <div><dt>API</dt><dd>OpenAI-compatible: point the OpenAI SDK at toknx.ai/v1 and existing code works. Streaming, idempotency keys, signed webhooks, one-line CLI install.</dd></div>
+        <div><dt>Security</dt><dd>Two-factor sign-in, scrypt passwords checked against known breaches, verified email; prompts, answers and email addresses encrypted at rest; encrypted nightly backups. Three red-team reviews (<strong>38</strong> findings, all fixed) and a <strong>59</strong>-check attack test run against the live server.</dd></div>
+        <div><dt>Size</dt><dd><strong>49</strong> Python modules, <strong>~9,800</strong> lines, <strong>~2,000</strong> lines of web interface, <strong>29</strong> database migrations, <strong>535</strong> tests.</dd></div>
+        <div><dt>Status</dt><dd>Live at <a href="https://toknx.ai">toknx.ai</a>, in beta.</dd></div>
       </dl>
 
       <div class="prose">

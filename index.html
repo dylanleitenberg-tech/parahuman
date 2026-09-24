@@ -66,7 +66,7 @@
     <ol class="index">
       <li><a href="#ar-rig"><span class="n">01</span><span class="t">AR Glasses Rig<small>Hardware, worn, running</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#asteroid-miner"><span class="n">02</span><span class="t">Self-Replicating Asteroid Miner<small>Design program, Mark 5</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a Mac, no keyboard. CAD you turn in the air and edit by voice.</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a computer, no keyboard, on macOS, Windows and Linux. CAD you turn in the air and edit by voice.</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#neuropian"><span class="n">04</span><span class="t">Neuropian<small>Talent-scouting web app · live</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#toknx"><span class="n">05</span><span class="t">Toknx<small>AI-access exchange · live at toknx.ai</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#robotics"><span class="n">06</span><span class="t">Youth Robotics Program<small>People, not hardware</small></span><span class="arrow">↗</span></a></li>
@@ -232,7 +232,8 @@
     <div class="p-head">
       <span class="n">03</span>
       <h2>J.A.R.V.I.S.</h2>
-      <p class="lede"><span class="status live">Running</span><span>hands and voice, no keyboard · holographic CAD, edited by voice · Python · MediaPipe · three.js · Claude</span></p>
+      <p class="lede"><span class="status live">Running</span><span>hands and voice, no keyboard · holographic CAD, edited by voice · macOS · Windows · Linux · Python · MediaPipe · three.js · Claude</span></p>
+      <p class="visit-row"><a class="visit" href="https://github.com/dylanleitenberg-tech/JARVIS#install">Download JARVIS <span aria-hidden="true">↗</span></a></p>
     </div>
 
     <figure class="lead wide free">
@@ -262,7 +263,7 @@
     <div class="cols">
       <dl class="specs">
         <div class="h">What it does</div>
-        <div><dt>Premise</dt><dd>Control a Mac without touching it. Hands are tracked by the camera, voice covers everything else, and a heads-up interface shows what the machine is seeing and doing.</dd></div>
+        <div><dt>Premise</dt><dd>Control a computer without touching it, on macOS, Windows or Linux. Hands are tracked by the camera, voice covers everything else, and a heads-up interface shows what the machine is seeing and doing.</dd></div>
         <div><dt>Gestures</dt><dd>Hands and body tracked at up to ~<strong>30 fps</strong>: point to move the cursor, pinch to click, pinch-drag, swipe to switch apps, fist to close, open palm for a radial menu, thumbs up or down to answer a confirmation. Only the user's hands drive: the hand already being followed keeps control, and a second person's hand cannot take over.</dd></div>
         <div><dt>CAD</dt><dd>Say "show the worm" and the model appears in the interface; move an open hand to turn it, pull the hand in or close the fingers to zoom in, push it away or open them to zoom out; pinch and move also turns, two fingers slide. A small camera box in the corner shows the hand doing it. STL is read directly, .scad is compiled live and STEP is converted on first use, so the part you are turning is the current source. The same gestures drive the viewport in OpenSCAD, Blender, Onshape and Fusion, each with its own orbit binding.</dd></div>
         <div><dt>Editing</dt><dd>Say what to change and the part on screen is rebuilt. An OpenSCAD model gets a panel of its own dimensions, set by voice ("set the lens width to 52"), slider or pinch-drag; the glasses frame rebuilds in <strong>0.12–0.16 s</strong>. Anything the dimensions can't express goes to Claude Opus 5.5, which edits the source, or writes a checked script against a STEP assembly's named parts. On the <strong>306</strong>-part aft engine, "make the nozzle 20 percent longer" took it from <strong>3,420</strong> to <strong>3,855 mm</strong>, throat fixed, nozzle still attached. Nothing is written until "save", and a save never overwrites the original.</dd></div>
@@ -272,7 +273,7 @@
         <div><dt>Model</dt><dd>Fixed phrases are parsed locally in about a millisecond, no model involved. Anything else goes to Claude Sonnet with the part's dimensions and the last few turns; a local Qwen3 8B through Ollama is the fallback. When a request is ambiguous it asks which dimension you meant instead of guessing. Geometry edits go to Claude Opus 5.5.</dd></div>
         <div><dt>Memory</dt><dd>Facts you tell it to remember survive restarts, and what you opened and edited is kept as a running history. When a project's model is on screen it reads that project's own notes. It speaks up unprompted only when a watched condition becomes true (unsaved edits, low disk), once, not for as long as it stays true.</dd></div>
         <div><dt>Verification</dt><dd>Seven test suites pass: intents, gestures, CAD driving, dimension editing, STEP editing, memory and alerts, model backends. Synthetic hand frames drive the gesture tests.</dd></div>
-        <div><dt>Status</dt><dd>Runs live: camera, gestures, voice, Claude and the local fallback. The macOS Accessibility grant, which keyboard, mouse and window control need, is still pending.</dd></div>
+        <div><dt>Status</dt><dd>Runs live: camera, gestures, voice, Claude and the local fallback. One-line installers for macOS, Windows and Linux, no administrator rights needed, checked on all three by automated installs; local model through Ollama, or bring your own Claude key. The macOS Accessibility grant, which keyboard, mouse and window control need on the Mac, is still pending.</dd></div>
         <div><dt>Source</dt><dd><a href="https://github.com/dylanleitenberg-tech/JARVIS">github.com/dylanleitenberg-tech/JARVIS</a></dd></div>
       </dl>
       <div class="prose">
@@ -371,7 +372,7 @@
     <div class="p-head">
       <span class="n">06</span>
       <h2>Youth Robotics Program</h2>
-      <p class="lede"><span class="status live">Running</span><span>Kauai, Hawaii</span></p>
+      <p class="lede"><span class="status">Starts October 1</span><span>Kauai, Hawaii</span></p>
     </div>
 
     <div class="cols">
@@ -379,7 +380,7 @@
         <div class="h">What exists because of it</div>
         <div><dt>Problem</dt><dd>Most of the school's robotics team was graduating. No STEM program for elementary students; five people on the FTC team.</dd></div>
         <div><dt>What I did</dt><dd>Founded the Youth Robotics Program: reached <strong>25+</strong> teachers, secured board-member funding, recruited high-school mentors, built the curriculum with the FTC captain.</dd></div>
-        <div><dt>Reach</dt><dd>A dozen students of all ages brought into engineering, working on real robots.</dd></div>
+        <div><dt>Launch</dt><dd>First sessions start October 1: elementary students building real robots alongside high-school mentors.</dd></div>
       </dl>
       <div class="prose">
         <h4>Why I built this</h4>

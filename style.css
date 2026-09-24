@@ -152,6 +152,7 @@ figure:hover .frame { border-color: var(--line-2); }
 figure.wide .frame { aspect-ratio: 21 / 9; }
 figure.tall .frame { aspect-ratio: 3 / 4; }
 figure.free .frame { aspect-ratio: auto; }
+figure .frame video { display: block; width: 100%; height: auto; }
 figure.wide.contain .frame { aspect-ratio: auto; }
 figure .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
 figure.contain .frame img { object-fit: contain; }

@@ -121,16 +121,18 @@ section.project { padding: 112px 0 88px; border-bottom: 1px solid var(--line); c
 .lede .status.live::before { background: var(--red); box-shadow: 0 0 0 4px var(--red-glow); }
 
 /* Text first, across the full width in three columns (What I built | What was hard |
-   What I learned); the spec sheet below in two columns, so a long list fills the width
-   instead of running down one half. Phones get one column. */
+   What I learned); the spec sheet below in two newspaper columns (rows flow down the
+   left, then the right), so a long list fills the width without pairing a short row
+   beside a tall one. Phones get one column. */
 .cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; margin: 48px 0 0; }
 .cols > * { min-width: 0; }
 .cols > .prose { order: -1; max-width: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: auto auto; grid-auto-flow: column; gap: 0 48px; }
 .cols > .prose:has(> h4:only-of-type) { grid-template-columns: minmax(0, 1fr); max-width: var(--measure); }
 .cols > .prose p { margin: 0; }
-dl.specs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px; }
-dl.specs .h { grid-column: 1 / -1; display: block; }
+dl.specs { columns: 2; column-gap: 48px; }
+dl.specs .h { -webkit-column-span: all; column-span: all; display: block; }
+dl.specs > div { -webkit-column-break-inside: avoid; break-inside: avoid; }
 
 dl.specs { margin: 0; border-top: 2px solid var(--red); }
 dl.specs .h { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); padding: 12px 0 10px; border-bottom: 1px solid var(--line); }
@@ -197,7 +199,7 @@ footer a { color: var(--ink-2); }
   .cols { grid-template-columns: 1fr; gap: 36px; }
   .cols > .prose { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-auto-flow: row; }
   .cols > .prose h4:not(:first-child) { margin-top: 22px; }
-  dl.specs { grid-template-columns: minmax(0, 1fr); }
+  dl.specs { columns: 1; }
   .gallery figure { grid-column: span 6; }
 }
 @media (max-width: 620px) {

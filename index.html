@@ -277,7 +277,7 @@
       </dl>
       <div class="prose">
         <h4>What I built</h4>
-        <p>Interactive computer interface controlled entirely by voice and gesture. JARVIS can rotate and move CAD, control games, and interact with both you and your computer.</p>
+        <p>Interactive computer interface controlled entirely by voice and gesture. JARVIS can rotate, move and edit CAD, control games, and interact with both you and your computer.</p>
         <h4>What was hard</h4>
         <p>Getting the tracking accurate enough to navigate detailed pages, where a pinch in the air has to land on a small button and stay there. The macOS permissions for letting it control the computer took longer than I expected too.</p>
         <h4>What I learned</h4>
@@ -318,17 +318,16 @@
 
 <!-- ============================ 05 TOKNX ============================ -->
 <section class="project" id="toknx">
-  <span id="token-barter"></span>
   <div class="wrap">
     <div class="p-head">
       <span class="n">05</span>
       <h2>Toknx</h2>
-      <p class="lede"><span class="status live">Live, beta</span><span>formerly Token Barter</span><span>Python · FastAPI · PostgreSQL · Redis</span><span><a href="https://toknx.ai">toknx.ai</a></span></p>
+      <p class="lede"><span class="status live">Live</span><span>Python · FastAPI · PostgreSQL · Redis</span><span><a href="https://toknx.ai">toknx.ai</a></span></p>
     </div>
 
-    <figure class="lead wide plate free">
-      <div class="frame"><img src="assets/toknx-landing.jpg" alt="The Toknx landing page at toknx.ai: the headline Trade AI access. Keep your money., a get-started button, a live count of verified agents on the market, and a Python code panel calling Toknx through the OpenAI SDK" loading="lazy"></div>
-      <figcaption>toknx.ai, live. The market line is read from the running server; the code panel is the whole integration, since Toknx speaks the OpenAI API.</figcaption>
+    <figure class="lead wide free">
+      <div class="frame"><img src="assets/toknx-publish.jpg" alt="Toknx web app, the Publish an agent page: name, provider, model, how it runs, per-token prices at the model's list value, token and request caps, decision mode, system prompt and filters" loading="lazy"></div>
+      <figcaption>Publish an agent: your AI, your rules. Name, provider, model, how it runs, price per input and output token (filled at the model's list value), caps per minute and per day, a system prompt, and refusal filters.</figcaption>
     </figure>
 
     <div class="cols">
@@ -342,7 +341,7 @@
         <div><dt>API</dt><dd>OpenAI-compatible: point the OpenAI SDK at toknx.ai/v1 and existing code works. Streaming, idempotency keys, signed webhooks, one-line CLI install.</dd></div>
         <div><dt>Security</dt><dd>Two-factor sign-in, scrypt passwords checked against known breaches, verified email; prompts, answers and email addresses encrypted at rest; encrypted nightly backups. Three red-team reviews (<strong>38</strong> findings, all fixed) and a <strong>59</strong>-check attack test run against the live server.</dd></div>
         <div><dt>Size</dt><dd><strong>49</strong> Python modules, <strong>~9,800</strong> lines, <strong>~2,000</strong> lines of web interface, <strong>29</strong> database migrations, <strong>535</strong> tests.</dd></div>
-        <div><dt>Status</dt><dd>Live at <a href="https://toknx.ai">toknx.ai</a>, in beta.</dd></div>
+        <div><dt>Status</dt><dd>Live at <a href="https://toknx.ai">toknx.ai</a>.</dd></div>
       </dl>
 
       <div class="prose">
@@ -351,8 +350,15 @@
         <h4>What was hard</h4>
         <p>Not breaking any TOS: most major companies don't let people do this in a direct exchange so I designed an indirect exchange that follows all rules.</p>
         <h4>Progress</h4>
-        <p>Still in testing, proven to work with Anthropic tokens, other providers coming soon.</p>
+        <p>Live, proven to work with Anthropic and OpenAI tokens, Gemini coming soon.</p>
       </div>
+    </div>
+
+    <div class="gallery">
+      <figure class="wide free">
+        <div class="frame"><img src="assets/toknx-landing.jpg" alt="The Toknx landing page at toknx.ai: the headline Trade AI access. Keep your money., a get-started button, and a Python code panel calling Toknx through the OpenAI SDK" loading="lazy"></div>
+        <figcaption>toknx.ai. The code panel is the whole integration: Toknx speaks the OpenAI API, so existing code only changes its address and key.</figcaption>
+      </figure>
     </div>
   </div>
 </section>

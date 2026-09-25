@@ -32,27 +32,15 @@ python3 -m http.server 8000
 
 ## Where it is
 
-- Source: https://github.com/dylanleitenberg-tech/parahuman (public, single-commit history)
-- Live on GitHub Pages: https://dylanleitenberg-tech.github.io/parahuman/
+- Live: https://parahuman.net (Netlify; the domain's DNS is on Netlify too)
+- Source: https://github.com/dylanleitenberg-tech/parahuman
+- Mirror on GitHub Pages: https://dylanleitenberg-tech.github.io/parahuman/
+  (its canonical tag points search engines at parahuman.net)
+- Google Search Console: Domain property `parahuman.net`, verified by a TXT
+  record in Netlify DNS. Keep that record.
 
-## Moving it to parahuman.net
-
-parahuman.net currently serves the "Who's the Next Elon" site on Netlify, and
-the domain's DNS is managed by Netlify. Two ways to put this site there:
-
-**A. Host it on Netlify (simplest, keeps everything in one place).**
-In the Netlify dashboard: Add new site -> Import from Git -> this repo
-(build command none, publish directory `/`). Then open the new site's
-Domain settings, add `parahuman.net`, and remove it from the old site.
-The old site keeps its `*.netlify.app` address.
-
-**B. Keep it on GitHub Pages and point the domain here.**
-In Netlify DNS for parahuman.net: add four `A` records for `@` ->
-185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 and a
-`CNAME` for `www` -> `dylanleitenberg-tech.github.io`, and delete the old
-records. Then in this repo: Settings -> Pages -> Custom domain
-`parahuman.net` (that writes the CNAME file), and tick Enforce HTTPS once
-the certificate is issued.
+*Hosting history: until 2026-09-23 the domain served a different site; this
+one replaced it on Netlify that day.*
 
 ## What is missing and worth adding
 
@@ -70,7 +58,8 @@ the certificate is issued.
 index.html    the page
 style.css     all styling; light paper by default, dark via prefers-color-scheme
 assets/       renders, photos and screenshots from the project repos
-CNAME         custom domain for GitHub Pages
+robots.txt    allows all crawlers, points at the sitemap
+sitemap.xml   the one URL, for Google Search Console
 ```
 
 Type: Instrument Serif (display), Inter (text), JetBrains Mono (data), loaded

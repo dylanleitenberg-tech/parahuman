@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,10 +77,10 @@ button[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0
 .note { font-size: 13px; color: var(--muted); }
 
 /* content */
-.hero { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: #e4e7ea; }
+.hero { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: #000; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
 .gallery figure { margin: 0; display: flex; flex-direction: column; gap: 6px; }
-.gallery img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--line); background: #e4e7ea; display: block; }
+.gallery img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--line); background: #000; display: block; }
 .gallery figcaption { font-size: 13px; color: var(--muted); }
 .dwg { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 12px 14px; border: 1px solid var(--line); background: var(--surface); }
 .dwg a { color: var(--accent); font-weight: 600; }
@@ -99,6 +99,7 @@ table { border-collapse: collapse; width: 100%; font-size: 14px; }
 th, td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { font-family: var(--display); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; font-size: 13px; color: var(--muted); }
 td.num { white-space: nowrap; }
+:root, :root[data-theme], :root:not([data-theme="light"]) { color-scheme: dark; --bg: #0a0a0b; --surface: #111113; --ink: #ece9e2; --muted: #9a978f; --line: #26262a; --accent: #d2451f; --accent-ink: #ffffff; --stage: #000000; --grid: #151517; --grid2: #26262a; --ok: #4cc38a; --warn: #e0a040; --chip: #18181b; }
 </style>
 </head>
 <body>
@@ -124,14 +125,14 @@ td.num { white-space: nowrap; }
   </header>
 
   <section aria-label="Renders">
-    <img class="hero" src="../assets/worm-water-hero.jpg" alt="Photoreal render of the Water Worm W1: dry vessel in navy, grey casings, graphite setae shoes and the red crown cutterhead" width="2000" height="1125">
+    <img class="hero" src="../assets/worm-water-hero-black.jpg" alt="Photoreal render of the Water Worm W1: dry vessel in navy, grey casings, graphite setae shoes and the red crown cutterhead" width="2000" height="1125">
   </section>
   <section class="gallery" aria-label="More renders">
-    <figure><img src="../assets/worm-water-vessel.jpg" alt="Cutaway of the dry vessel" loading="lazy"><figcaption>Dry vessel, cut open: gearmotor, both couplers, the dowel-pin seal shaft, lead screw, sled.</figcaption></figure>
-    <figure><img src="../assets/worm-water-head.jpg" alt="Crown cutterhead close-up" loading="lazy"><figcaption>Crown cutterhead: nine staggered picks in brass inserts, fluted pilot bit.</figcaption></figure>
-    <figure><img src="../assets/worm-water-cutaway.jpg" alt="Full-length cutaway" loading="lazy"><figcaption>Full-length cutaway: slurry path from the crown, through the auger, to the chamber.</figcaption></figure>
-    <figure><img src="../assets/worm-water-rear.jpg" alt="Rear view with WetLink penetrators" loading="lazy"><figcaption>Rear: lid with two WetLink penetrators, air fitting, tether and hoses.</figcaption></figure>
-    <figure><img src="../assets/worm-water-exploded.jpg" alt="Exploded view in assembly order" loading="lazy"><figcaption>Exploded, in assembly order.</figcaption></figure>
+    <figure><img src="../assets/worm-water-vessel-black.jpg" alt="Cutaway of the dry vessel" loading="lazy"><figcaption>Dry vessel, cut open: gearmotor, both couplers, the dowel-pin seal shaft, lead screw, sled.</figcaption></figure>
+    <figure><img src="../assets/worm-water-head-black.jpg" alt="Crown cutterhead close-up" loading="lazy"><figcaption>Crown cutterhead: nine staggered picks in brass inserts, fluted pilot bit.</figcaption></figure>
+    <figure><img src="../assets/worm-water-cutaway-black.jpg" alt="Full-length cutaway" loading="lazy"><figcaption>Full-length cutaway: slurry path from the crown, through the auger, to the chamber.</figcaption></figure>
+    <figure><img src="../assets/worm-water-rear-black.jpg" alt="Rear view with WetLink penetrators" loading="lazy"><figcaption>Rear: lid with two WetLink penetrators, air fitting, tether and hoses.</figcaption></figure>
+    <figure><img src="../assets/worm-water-exploded-black.jpg" alt="Exploded view in assembly order" loading="lazy"><figcaption>Exploded, in assembly order.</figcaption></figure>
   </section>
   <div class="dwg"><b>Engineering drawings</b><span>4 A3 sheets: general arrangement, section A-A with seal details, crown and setae shoe, parts list.</span>
     <a href="../assets/water-worm-drawings.pdf" target="_blank" rel="noopener">Open the PDF</a></div>

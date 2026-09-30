@@ -220,3 +220,6 @@ footer a { color: var(--ink-2); }
   dl.specs div { grid-template-columns: 96px 1fr; }
   ul.list li { grid-template-columns: 1fr; gap: 2px; }
 }
+
+/* placeholder for Dylan's own prose; the page is not published while one remains */
+.slot { border: 1px dashed #c9a227; background: #fff8dc; color: #8a6d00; padding: 10px 12px; margin: 0 0 14px; font-size: 14px; }

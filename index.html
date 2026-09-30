@@ -26,10 +26,11 @@
     <ul>
       <li><a href="#ar-rig">01 Glasses</a></li>
       <li><a href="#asteroid-miner">02 Miner</a></li>
-      <li><a href="#jarvis">03 JARVIS</a></li>
-      <li><a href="#neuropian">04 Neuropian</a></li>
-      <li><a href="#toknx">05 Toknx</a></li>
-      <li><a href="#robotics">06 Robotics</a></li>
+      <li><a href="#water-worm">03 Water Worm</a></li>
+      <li><a href="#jarvis">04 JARVIS</a></li>
+      <li><a href="#neuropian">05 Neuropian</a></li>
+      <li><a href="#toknx">06 Toknx</a></li>
+      <li><a href="#robotics">07 Robotics</a></li>
     </ul>
   </div>
 </nav>
@@ -41,7 +42,7 @@
       <h1>Dylan<br>Leitenberg</h1>
 
       <p class="tagline">I build.</p>
-      <p class="velocity">Six projects. April to September 2026.</p>
+      <p class="velocity">Seven projects. April to September 2026.</p>
 
       <div class="meta">
         <span>17</span>
@@ -65,10 +66,11 @@
     <ol class="index">
       <li><a href="#ar-rig"><span class="n">01</span><span class="t">AR Glasses Rig<small>Hardware, worn, running</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#asteroid-miner"><span class="n">02</span><span class="t">Self-Replicating Asteroid Miner<small>Design program, Mark 5</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#jarvis"><span class="n">03</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a computer, no keyboard, on macOS, Windows and Linux. CAD you turn in the air and edit by voice.</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#neuropian"><span class="n">04</span><span class="t">Neuropian<small>Talent-scouting web app · live</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#toknx"><span class="n">05</span><span class="t">Toknx<small>AI-access exchange · live at toknx.ai</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#robotics"><span class="n">06</span><span class="t">Youth Robotics Program<small>People, not hardware</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#water-worm"><span class="n">03</span><span class="t">Water Worm<small>The asteroid worm, made waterproof for submerged mine tailings · CAD, 3D</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#jarvis"><span class="n">04</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a computer, no keyboard, on macOS, Windows and Linux. CAD you turn in the air and edit by voice.</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#neuropian"><span class="n">05</span><span class="t">Neuropian<small>Talent-scouting web app · live</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#toknx"><span class="n">06</span><span class="t">Toknx<small>AI-access exchange · live at toknx.ai</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#robotics"><span class="n">07</span><span class="t">Youth Robotics Program<small>People, not hardware</small></span><span class="arrow">↗</span></a></li>
     </ol>
   </div>
 </section>
@@ -225,11 +227,82 @@
   </div>
 </section>
 
-<!-- ============================ 03 JARVIS ============================ -->
-<section class="project" id="jarvis">
+<!-- ============================ 03 WATER WORM ============================ -->
+<section class="project" id="water-worm">
   <div class="wrap">
     <div class="p-head">
       <span class="n">03</span>
+      <h2>Water Worm</h2>
+      <p class="lede"><span class="status">CAD, checked by script · not yet built</span><span>OpenSCAD · Python checks · Blender Cycles</span></p>
+    </div>
+
+    <figure class="lead wide free">
+      <div class="frame"><img src="assets/worm-water-hero.jpg" alt="Render of the Water Worm W1: a 679 mm burrowing worm with a blue dry vessel at the tail, grey casings with folding setae shoes, and a red crown cutterhead at the front"></div>
+      <figcaption>Water Worm W1, the 100 mm test model, rendered from the OpenSCAD model. Every surface in the image is a surface in the CAD. <a href="water-worm/">Turn it in 3D, cut it open and play the gait ↗</a></figcaption>
+    </figure>
+
+    <div class="cols">
+      <dl class="specs">
+        <div class="h">The design</div>
+        <div><dt>Job</dt><dd>Burrow through the mud of flooded mine-tailings ponds and pump the cut to the surface as slurry, for reprocessing.</dd></div>
+        <div><dt>From</dt><dd>The asteroid miner's worm: the same two-section burrowing gait, <strong>50 mm</strong> stroke and auger, with the astroworm's crown cutterhead.</dd></div>
+        <div><dt>Size</dt><dd>Bore <strong>Ø100 mm</strong>, length <strong>679 mm</strong>, <strong>26</strong> printed parts, each inside a 130 × 130 × 125 mm print bed.</dd></div>
+        <div><dt>Waterproofing</dt><dd>One dry vessel holds both motors and every wire. Rotary lip seal on a hardened, ground dowel pin; two U-cups on the pushrod; WetLink cable penetrators; an air line holds the vessel just above water pressure so a leak shows as bubbles.</dd></div>
+        <div><dt>Anchoring</dt><dd>Curved setae shoes fold to <strong>4°</strong> going forward and open to <strong>35°</strong> slipping back. Estimated hold: <strong>1.24×</strong> what the dig stroke needs.</dd></div>
+        <div><dt>Checks</dt><dd><strong>149</strong> interference runs clear with <strong>29</strong> controls that must fail and do; a leak model of <strong>21</strong> cases finds the leak when any one of the <strong>8</strong> seals is removed.</dd></div>
+        <div><dt>Stress test</dt><dd>One 5–10 minute run in the lower Anahola Stream, Kauai, calculated against USGS flow records: <strong>3</strong> failures found. Two are fixed in the parts list (a check valve at the lid, a B7 alloy auger rod); the third sets the test spot at 1.2 m deep or less.</dd></div>
+        <div><dt>Drawings</dt><dd>Four A3 sheets: general arrangement, section with seal details, cutterhead and shoe, parts list. <a href="assets/water-worm-drawings.pdf">PDF</a></dd></div>
+        <div><dt>Status</dt><dd>Designed and checked by script. Not yet printed or put in water.</dd></div>
+      </dl>
+
+      <div class="prose">
+        <h4>What I built</h4>
+        <div class="slot">Your words.</div>
+        <h4>What was hard</h4>
+        <div class="slot">Your words.</div>
+        <h4>What I learned</h4>
+        <div class="slot">Your words.</div>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure class="half contain">
+        <div class="frame"><img src="assets/worm-water-head.jpg" alt="Close render of the red crown cutterhead: gauge rim with teeth, a scroll cone, three twisted blades carrying staggered steel picks, and a fluted pilot bit" loading="lazy"></div>
+        <figcaption>Crown cutterhead, after the astroworm's: gauge rim, 45° scroll cone, three twisted blades, nine staggered picks in brass inserts, fluted pilot bit. It drives through a steel coupling nut in a hex pocket.</figcaption>
+      </figure>
+      <figure class="half contain">
+        <div class="frame"><img src="assets/worm-water-vessel.jpg" alt="Cutaway render of the blue dry vessel showing the gearmotor, couplers, seal shaft, lead screw and sled inside" loading="lazy"></div>
+        <figcaption>The dry vessel, cut open: gearmotor, both couplers, the dowel-pin seal shaft, lead screw and sled.</figcaption>
+      </figure>
+      <figure class="wide contain">
+        <div class="frame"><img src="assets/worm-water-cutaway.jpg" alt="Full-length cutaway render: slurry path from the crown through the auger flights to the chamber behind the vessel" loading="lazy"></div>
+        <figcaption>Full-length cutaway: the cut goes from the crown, through the auger, to a chamber where one hose takes slurry out and another brings dilution water in.</figcaption>
+      </figure>
+      <figure class="wide contain">
+        <div class="frame"><img src="assets/worm-water-exploded.jpg" alt="Exploded render of every part in assembly order, from the lid at the tail to the crown at the head" loading="lazy"></div>
+        <figcaption>Exploded, in assembly order.</figcaption>
+      </figure>
+      <figure class="wide plate free">
+        <div class="frame"><img src="assets/worm-water-sheet2.jpg" alt="A3 engineering drawing: section on the worm axis at 1:2, with 2:1 details of the auger seal at the nose and the pushrod gland" loading="lazy"></div>
+        <figcaption>Drawing W1-SEC-002: section on the axis, and the two seal details at 2:1.</figcaption>
+      </figure>
+      <figure class="half plate">
+        <div class="frame"><img src="assets/worm-water-sheet1.jpg" alt="A3 general-arrangement drawing of the worm in three views with overall dimensions and part balloons" loading="lazy"></div>
+        <figcaption>W1-GA-001, general arrangement.</figcaption>
+      </figure>
+      <figure class="half plate">
+        <div class="frame"><img src="assets/worm-water-sheet3.jpg" alt="A3 detail drawing of the crown cutterhead and the setae shoe at 2:1" loading="lazy"></div>
+        <figcaption>W1-DET-003, cutterhead and setae shoe.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 04 JARVIS ============================ -->
+<section class="project" id="jarvis">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="n">04</span>
       <h2>J.A.R.V.I.S.</h2>
       <p class="lede"><span class="status live">Running</span><span>hands and voice, no keyboard · holographic CAD, edited by voice · macOS · Windows · Linux · Python · MediaPipe · three.js · Claude</span></p>
       <p class="visit-row"><a class="visit" href="https://github.com/dylanleitenberg-tech/JARVIS#install">Download JARVIS <span aria-hidden="true">↗</span></a></p>
@@ -291,7 +364,7 @@
 <section class="project" id="neuropian">
   <div class="wrap">
     <div class="p-head">
-      <span class="n">04</span>
+      <span class="n">05</span>
       <h2>Neuropian</h2>
       <p class="lede"><span class="status live">Live</span><span>Full-stack web app</span><span><a href="https://neuropian.com">neuropian.com</a></span></p>
     </div>
@@ -320,7 +393,7 @@
 <section class="project" id="toknx">
   <div class="wrap">
     <div class="p-head">
-      <span class="n">05</span>
+      <span class="n">06</span>
       <h2>Toknx</h2>
       <p class="lede"><span class="status live">Live</span><span>Python · FastAPI · PostgreSQL · Redis</span></p>
       <p class="visit-row"><a class="visit" href="https://toknx.ai">Visit toknx.ai <span aria-hidden="true">↗</span></a></p>
@@ -369,7 +442,7 @@
 <section class="project" id="robotics">
   <div class="wrap">
     <div class="p-head">
-      <span class="n">06</span>
+      <span class="n">07</span>
       <h2>Youth Robotics Program</h2>
       <p class="lede"><span class="status">Starts October 1</span><span>Kauai, Hawaii</span></p>
     </div>

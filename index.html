@@ -97,7 +97,8 @@
         <div><dt>Optics</dt><dd>XREAL One Pro birdbath optical see-through, driven as a second monitor at <strong>1920×1080</strong>.</dd></div>
         <div><dt>World cams</dt><dd>2× ELP AR0234 global shutter, <strong>1920×1200</strong>, 70° FOV, <strong>914 px</strong> focal, <strong>67.0 mm</strong> baseline.</dd></div>
         <div><dt>Eye cams</dt><dd>2× OV9281 mono NoIR global shutter, <strong>1280×800</strong>, 45° FOV, aimed down 6° and out 3°.</dd></div>
-        <div><dt>Eye tracking</dt><dd>Inner canthus as the landmark; model trained on <strong>10,000</strong> synthetic eye frames; <strong>4 px</strong> in simulation, <strong>5 px</strong> on hardware.</dd></div>
+        <div><dt>Eye tracking</dt><dd>Inner canthus as the landmark; model trained on <strong>10,000</strong> synthetic eye frames.</dd></div>
+        <div><dt>Overlay accuracy</dt><dd>About <strong>4 px</strong>, measured on the worn hardware within one wearing.</dd></div>
         <div><dt>Reading</dt><dd>Live document translation reads <strong>25–28 lines</strong> at <strong>26–35 cm</strong>; plane-warped stereo keeps a tilted page registered.</dd></div>
         <div><dt>Person tier</dt><dd>Live person-to-character replacement, both eyes, worn, ~<strong>30 fps</strong>.</dd></div>
         <div><dt>Bandwidth</dt><dd>Four cameras on one USB 2.0 hub. Three native streams ≈ <strong>37 fps</strong> is the ceiling; four run at 640×400.</dd></div>
@@ -262,12 +263,13 @@
         <div class="h">The design</div>
         <div><dt>Job</dt><dd>Burrow through the mud of flooded mine-tailings ponds and pump the cut to the surface as slurry, for reprocessing.</dd></div>
         <div><dt>From</dt><dd>The asteroid miner's worm: the same two-section burrowing gait, <strong>50 mm</strong> stroke and auger, with the astroworm's crown cutterhead.</dd></div>
-        <div><dt>Size</dt><dd>Bore <strong>Ø100 mm</strong>, length <strong>685 mm</strong>, <strong>26</strong> printed parts, each inside a 130 × 130 × 125 mm print bed.</dd></div>
-        <div><dt>Waterproofing</dt><dd>One dry vessel holds both motors and every wire. Rotary lip seal on a hardened, ground dowel pin; two U-cups on the pushrod; WetLink cable penetrators; an air line holds the vessel just above water pressure so a leak shows as bubbles.</dd></div>
+        <div><dt>Size</dt><dd>Bore <strong>Ø100 mm</strong>, <strong>38</strong> parts; every printed one fits a 130 × 130 × 125 mm print bed.</dd></div>
+        <div><dt>Drive</dt><dd>Hand-cranked from the surface (rev 3.1): a bit brace turns the auger through a flexible shaft and a slip clutch; a push-pull cable and lever work the gait, with a luggage scale on the handle reading the force.</dd></div>
+        <div><dt>Waterproofing</dt><dd>The dry vessel stays sealed and full of air, ballasted to the electric design's weight, so it floats, sinks and anchors the same way. Rotary lip seals on the drive shaft and the dowel pin; U-cups on the gait rod and pushrod; a hand pump on the air fitting pressure-tests every seal, so a leak shows as bubbles.</dd></div>
         <div><dt>Cutterhead</dt><dd>Self-feeding: three right-hand helical blades, swept outer end first, push the cut rearward into the throat and inward from the bore wall, so the reaction pulls the head forward; a screw point threads into the bed ahead of them. Same hand as the auger.</dd></div>
         <div><dt>Anchoring</dt><dd>Curved setae shoes fold to <strong>4°</strong> going forward and open to <strong>35°</strong> slipping back. Estimated hold: <strong>1.24×</strong> what the dig stroke needs.</dd></div>
-        <div><dt>Checks</dt><dd><strong>149</strong> interference runs clear with <strong>29</strong> controls that must fail and do; a leak model of <strong>21</strong> cases finds the leak when any one of the <strong>8</strong> seals is removed.</dd></div>
-        <div><dt>Stress test</dt><dd>One 5–10 minute run in the lower Anahola Stream, Kauai, calculated against USGS flow records: <strong>3</strong> failures found. Two are fixed in the parts list (a check valve at the lid, a B7 alloy auger rod); the third sets the test spot at 1.2 m deep or less.</dd></div>
+        <div><dt>Checks</dt><dd><strong>158</strong> interference runs clear with <strong>41</strong> controls that must fail and do; a leak model of <strong>29</strong> cases finds the leak when any one seal is removed.</dd></div>
+        <div><dt>Stress test</dt><dd>A 5–10 minute run in the lower Anahola Stream, Kauai, calculated (not run) against USGS flow records: <strong>3</strong> failures found. Two are fixed in the parts list (a check valve at the lid, a B7 alloy auger rod); the third sets the test spot at 1.2 m deep or less.</dd></div>
         <div><dt>Drawings</dt><dd>Four A3 sheets: general arrangement, section with seal details, cutterhead and shoe, parts list. <a href="assets/water-worm-drawings.pdf">PDF</a></dd></div>
         <div><dt>Status</dt><dd>Designed and checked by script. Not yet printed or put in water.</dd></div>
       </dl>
@@ -287,11 +289,11 @@
     <div class="gallery">
       <figure class="half contain">
         <div class="frame"><img src="assets/worm-water-head-black.jpg" alt="Close render of the red crown cutterhead: gauge rim with teeth, a scroll cone, three helical swept blades carrying staggered steel picks, and a threaded screw point" loading="lazy"></div>
-        <figcaption>Crown cutterhead, after the astroworm's: gauge rim, 45° scroll cone, three right-hand helical blades swept to feed the cut inward and rearward, nine staggered picks, and a self-feeding screw point. It drives through a steel coupling nut in a hex pocket.</figcaption>
+        <figcaption>Crown cutterhead, after the astroworm's: gauge rim, 45° scroll cone, three right-hand helical blades swept to feed the cut inward and rearward, nine staggered picks, and a self-feeding screw point. In rev 3.1 it drives through a turned steel hub, so the printed flights carry no load.</figcaption>
       </figure>
       <figure class="half contain">
         <div class="frame"><img src="assets/worm-water-vessel-black.jpg" alt="Cutaway render of the blue dry vessel showing the gearmotor, couplers, seal shaft, lead screw and sled inside" loading="lazy"></div>
-        <figcaption>The dry vessel, cut open: gearmotor, both couplers, the dowel-pin seal shaft, lead screw and sled.</figcaption>
+        <figcaption>The dry vessel of the earlier electric design, cut open: gearmotor, both couplers, the dowel-pin seal shaft, lead screw and sled. The hand-cranked rev 3.1 keeps this vessel and its seals, with ballast where the motors were.</figcaption>
       </figure>
       <figure class="wide contain">
         <div class="frame"><img src="assets/worm-water-cutaway-black.jpg" alt="Full-length cutaway render: slurry path from the crown through the auger flights to the chamber behind the vessel" loading="lazy"></div>
@@ -463,15 +465,15 @@
     <div class="p-head">
       <span class="n">07</span>
       <h2>Youth Robotics Program</h2>
-      <p class="lede"><span class="status">Starts October 1</span><span>Kauai, Hawaii</span></p>
+      <p class="lede"><span class="status">Running</span><span>Kauai, Hawaii</span></p>
     </div>
 
     <div class="cols">
       <dl class="specs">
         <div class="h">What exists because of it</div>
         <div><dt>Problem</dt><dd>Most of the school's robotics team was graduating. No STEM program for elementary students; five people on the FTC team.</dd></div>
-        <div><dt>What I did</dt><dd>Founded the Youth Robotics Program: reached <strong>25+</strong> teachers, secured board-member funding, recruited high-school mentors, built the curriculum with the FTC captain.</dd></div>
-        <div><dt>Launch</dt><dd>First sessions start October 1: elementary students building real robots alongside high-school mentors.</dd></div>
+        <div><dt>What I did</dt><dd>Founded the Youth Robotics Program: reached <strong>27</strong> teachers, secured board-member funding, recruited high-school mentors, built the curriculum with the FTC captain.</dd></div>
+        <div><dt>Now</dt><dd><strong>28</strong> elementary students building real robots alongside high-school mentors, from coding to PID control.</dd></div>
       </dl>
       <div class="prose">
         <h4>Why I built this</h4>
@@ -486,7 +488,7 @@
     <h2>Elsewhere</h2>
     <ul class="list">
       <li><span class="k">Honors</span><span>National Merit Semifinalist, 2026. College Board National Rural and Small Town Recognition Award.</span></li>
-      <li><span class="k">FIRST Robotics</span><span>FTC team of five: build, design and alliance negotiation. Second in Hawaii, qualified for Canada Cup.</span></li>
+      <li><span class="k">FIRST Robotics</span><span>FTC team of five: build, design and alliance negotiation. Second in Hawaii; competed at the FTC Canada Cup and Governor's Cup.</span></li>
       <li><span class="k">Research</span><span>Co-author on two posters presented at the American Psychological Association national convention, through The Good Student. Data analysis in R.</span></li>
       <li><span class="k">National History Day</span><span>Won regionals and advanced to states with a paper built around my grandmother's flight from Poland.</span></li>
       <li><span class="k">Guitar</span><span>Eight years, classical and electric. Villa-Lobos Etude 7 through metal bands.</span></li>

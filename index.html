@@ -95,20 +95,19 @@
       <dl class="specs">
         <div class="h">Measured on this hardware</div>
         <div><dt>Optics</dt><dd>XREAL One Pro birdbath optical see-through, driven as a second monitor at <strong>1920×1080</strong>.</dd></div>
-        <div><dt>World cams</dt><dd>2× ELP AR0234 global shutter, <strong>1920×1200</strong>, 70° FOV, <strong>914 px</strong> focal, <strong>67.0 mm</strong> baseline.</dd></div>
-        <div><dt>Eye cams</dt><dd>2× OV9281 mono NoIR global shutter, <strong>1280×800</strong>, 45° FOV, aimed down 6° and out 3°.</dd></div>
-        <div><dt>Eye tracking</dt><dd>Inner canthus as the landmark; model trained on <strong>10,000</strong> synthetic eye frames.</dd></div>
+        <div><dt>World cams</dt><dd>2× ELP AR0234 global shutter, <strong>1920×1200</strong>, <strong>595 px</strong> focal (about 116° wide), <strong>74.76 mm</strong> baseline, measured.</dd></div>
+        <div><dt>Eye cams</dt><dd>2× OV9281 mono NoIR global shutter, <strong>1280×800</strong>.</dd></div>
+        <div><dt>Slip sensing</dt><dd>Skin patches beside the eyes: steady to <strong>0.3–1.9 px</strong> with the glasses held still, down from <strong>8–37 px</strong> for the earlier eye-corner model (held-out frames).</dd></div>
         <div><dt>Overlay accuracy</dt><dd>About <strong>4 px</strong>, measured on the worn hardware within one wearing.</dd></div>
-        <div><dt>Reading</dt><dd>Live document translation reads <strong>25–28 lines</strong> at <strong>26–35 cm</strong>; plane-warped stereo keeps a tilted page registered.</dd></div>
-        <div><dt>Person tier</dt><dd>Live person-to-character replacement, both eyes, worn, ~<strong>30 fps</strong>.</dd></div>
-        <div><dt>Bandwidth</dt><dd>Four cameras on one USB 2.0 hub. Three native streams ≈ <strong>37 fps</strong> is the ceiling; four run at 640×400.</dd></div>
-        <div><dt>Verification</dt><dd><strong>23</strong> self-tests; capability inventory across <strong>78</strong> modules, every figure tagged measured or assumed.</dd></div>
+        <div><dt>Reading</dt><dd>Live document translation reads <strong>25–28 lines</strong> of a printed page at about <strong>25 cm</strong>.</dd></div>
+        <div><dt>Person tier</dt><dd>Live person-to-character replacement, both eyes, worn: drawn in <strong>89%</strong> of rendered frames, a new pose every <strong>38 ms</strong>.</dd></div>
+        <div><dt>Verification</dt><dd><strong>45</strong> self-tests on the translation path; capability inventory across <strong>78</strong> modules, every figure tagged measured or assumed.</dd></div>
         <div><dt>Source</dt><dd><a href="https://github.com/dylanleitenberg-tech/AR_Glasses_Rig">github.com/dylanleitenberg-tech/AR_Glasses_Rig</a></dd></div>
       </dl>
 
       <div class="prose">
         <h4>What I built</h4>
-        <p>Real-world stereo overlay. Translation, object substitution, and reactive display. Uses inner canthal tracking, a machine learning model trained on 10,000 synthetic eye frames to learn your face, and independent synchronized monitors for realistic stereo display. No off-the-shelf AR glasses do this.</p>
+        <p>Real-world stereo overlay. Translation, object substitution, and reactive display. Uses eye cameras that sense how the glasses sit on your face, and independent synchronized monitors for realistic stereo display. No off-the-shelf AR glasses do this.</p>
         <h4>What was hard</h4>
         <p>One camera never shipped so I had to make do with the 2 eye cams and 2 world cams. Realistic motion tracking was very difficult because it not only required precise, active overlay, but orientation, predictive movement, and an understanding of the person's stance.</p>
         <h4>What I learned</h4>
@@ -119,7 +118,7 @@
     <div class="gallery">
       <figure class="wide free">
         <div class="frame"><img src="assets/rig-stereo-character.jpg" alt="Stereo pair, left and right eye, of a rendered character standing in for a live tracked person, hands at their sides" loading="lazy"></div>
-        <figcaption>Left- and right-eye views as sent to the glasses: a tracked person replaced by a rendered character at their position, scale and pose. Black is transparent on the see-through display. Rendered at 31.8 fps on the worn rig.</figcaption>
+        <figcaption>Left- and right-eye views as sent to the glasses: a tracked person replaced by a rendered character at their position, scale and pose. Black is transparent on the see-through display. Frame from a replay of a worn recording.</figcaption>
       </figure>
       <figure class="wide">
         <div class="frame"><img src="assets/rig-character-room.jpg" alt="World-camera view of a room with a person walking toward the camera, replaced by a rendered character at the same position, scale and gait" loading="lazy"></div>
@@ -127,7 +126,7 @@
       </figure>
       <figure class="photo">
         <div class="frame"><img src="assets/rig-complete.jpg" alt="The complete rig off the face: four camera boards on the printed carrier zip-tied to the glasses, cables routed back" loading="lazy"></div>
-        <figcaption>The rig off the face: four cameras, one carrier, one USB hub.</figcaption>
+        <figcaption>The rig off the face: four cameras, one carrier.</figcaption>
       </figure>
       <figure class="photo">
         <div class="frame"><img src="assets/rig-carrier-clamped.jpg" alt="The printed carrier clamped onto the brow of the glasses, held in one hand" loading="lazy"></div>
@@ -151,7 +150,7 @@
       </figure>
       <figure>
         <div class="frame"><img src="assets/rig-canthus-lock.jpg" alt="Raw eye-camera frame with the tracker's green lock box on the inner eye corner" loading="lazy"></div>
-        <figcaption>What an eye camera sees. The green box is the tracker's lock on the inner eye corner; the dark shape at top is the nose-bridge support.</figcaption>
+        <figcaption>What an eye camera sees. The green box is an earlier tracker's lock on the inner eye corner (slip sensing now uses skin patches); the dark shape at top is the nose-bridge support.</figcaption>
       </figure>
       <!-- *superseded 2026-10-04 by the Einstein side-by-side below*
       <figure class="wide free">

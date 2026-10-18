@@ -102,7 +102,7 @@
         <div><dt>Reading</dt><dd>Live document translation reads <strong>25–28 lines</strong> of a printed page at about <strong>25 cm</strong>.</dd></div>
         <div><dt>Person tier</dt><dd>Live person-to-character replacement, both eyes, worn: drawn in <strong>89%</strong> of rendered frames, a new pose every <strong>38 ms</strong>.</dd></div>
         <div><dt>Verification</dt><dd><strong>45</strong> self-tests on the translation path; capability inventory across <strong>78</strong> modules, every figure tagged measured or assumed.</dd></div>
-        <div><dt>Source</dt><dd><a href="https://github.com/dylanleitenberg-tech/AR_Glasses_Rig">github.com/dylanleitenberg-tech/AR_Glasses_Rig</a></dd></div>
+        <div><dt>Repo</dt><dd><a href="https://github.com/dylanleitenberg-tech/AR_Glasses_Rig">github.com/dylanleitenberg-tech/AR_Glasses_Rig</a></dd></div>
       </dl>
 
       <div class="prose">
@@ -199,7 +199,7 @@
         <div><dt>Power</dt><dd>Mirror field into thermophotovoltaics with a silicon thermal store. No batteries anywhere in the architecture.</dd></div>
         <div><dt>Method</dt><dd>Every decision provenance-tagged recovered / revised / sourced / computed / speculative, so no number hardens without a trace.</dd></div>
         <div><dt>CAD shown</dt><dd>The worm (Mark 5 rev E) and its 2 m terrestrial test article are the current design. The aft engine and carbonyl skid are Mark 4, the previous generation, kept because that CAD survived.</dd></div>
-        <div><dt>Source</dt><dd>Worm anchor: <a href="https://github.com/dylanleitenberg-tech/astroworm">github.com/dylanleitenberg-tech/astroworm</a>. The full program repository is private.</dd></div>
+        <div><dt>Repo</dt><dd>Worm anchor: <a href="https://github.com/dylanleitenberg-tech/astroworm">github.com/dylanleitenberg-tech/astroworm</a>. The full program repository is private.</dd></div>
         <div><dt>Toolchain</dt><dd>Parametric CAD with compile-time assertions (the file refuses to render if a mate or rule is violated) plus an economic model that sizes each machine by predicted future dependency and emits the CAD priority queue.</dd></div>
       </dl>
 
@@ -356,15 +356,15 @@
       <dl class="specs">
         <div class="h">What it does</div>
         <div><dt>Premise</dt><dd>Control a computer without touching it, tested on macOS (Windows and Linux installers written, not yet run). Hands are tracked by the camera, voice covers everything else, and a heads-up interface shows what the machine is seeing and doing.</dd></div>
-        <div><dt>Gestures</dt><dd>Hands and body tracked at <strong>14-18 fps</strong> measured live: point to move the cursor, pinch to click, pinch-drag, two fingers to scroll, swipe to switch apps, open palm for a radial menu, thumbs up or down to answer a confirmation. Only the user's hands drive: the hand already being followed keeps control, and a second person's hand cannot take over.</dd></div>
+        <div><dt>Gestures</dt><dd>Hands and body tracked at <strong>14-18 fps</strong> measured live: point to move the cursor, pinch to click, pinch-drag, two fingers to scroll, swipe to switch apps, open palm for a radial menu, thumbs up or down to answer a confirmation. Only the user's hands drive: the hand already being followed keeps control, and a second person's hand waits until the first has been gone for a second.</dd></div>
         <div><dt>CAD</dt><dd>Say "show the worm" and the model appears in the interface; move an open hand to turn it, pull the hand in or close the fingers to zoom in, push it away or open them to zoom out; pinch and move also turns, two fingers slide. A small camera box in the corner shows the hand doing it. STL is read directly, .scad is compiled live and STEP is converted on first use, so the part you are turning is the current source. The same gestures drive the viewport in OpenSCAD, Blender, Onshape and Fusion, each with its own orbit binding.</dd></div>
-        <div><dt>Editing</dt><dd>Say what to change and the part on screen is rebuilt. An OpenSCAD model gets a panel of its own dimensions, set by voice ("set the lens width to 52"), slider or pinch-drag; the glasses frame rebuilds in <strong>0.12–0.16 s</strong>. Anything the dimensions can't express goes to Claude Opus 5.5, which edits the source, or writes a checked script against a STEP assembly's named parts. On the <strong>306</strong>-part aft engine, "make the nozzle 20 percent longer" took it from <strong>3,420</strong> to <strong>3,855 mm</strong>, throat fixed, nozzle still attached. Nothing is written until "save", and a save never overwrites the original.</dd></div>
+        <div><dt>Editing</dt><dd>Say what to change and the part on screen is rebuilt. An OpenSCAD model gets a panel of its own dimensions, set by voice ("set the lens width to 52"), slider or pinch-drag; the glasses frame rebuilds in <strong>0.16 s</strong>. Anything the dimensions can't express goes to Claude Opus 5.5, which edits the source, or writes a checked script against a STEP assembly's named parts. On the <strong>306</strong>-part aft engine, "make the nozzle 20 percent longer" took it from <strong>3,420</strong> to <strong>3,855 mm</strong>, throat fixed, nozzle still attached. Nothing is written until "save", and a save never overwrites the original.</dd></div>
         <div><dt>Checks</dt><dd>Every STEP geometry edit is checked before it stays (OpenSCAD edits get a build-error repair). The assembly's size is compared before and after, and anything grown past <strong>1.6×</strong> goes back for repair; this was added after three stacked stretches wrecked an engine. Then the viewer photographs the result from three angles and the model judges the pictures; an edit that looks wrong is undone and repaired.</dd></div>
         <div><dt>Speech</dt><dd>Wake word, spoken reply, and it stops listening for exactly as long as it is speaking so it never transcribes itself.</dd></div>
         <div><dt>Control</dt><dd><strong>43</strong> actions (apps, windows, tabs, keyboard, mouse, media, volume, brightness, screenshots, clipboard, Shortcuts, telemetry), one registry, exposed identically to the gestures, the parser, the UI and the model.</dd></div>
-        <div><dt>Model</dt><dd>Fixed phrases are parsed locally in about a millisecond, no model involved. Anything else goes to Claude Sonnet with the part's dimensions and the last few turns; a local Qwen3 8B through Ollama is the fallback. When a request is ambiguous it asks which dimension you meant instead of guessing. Geometry edits go to Claude Opus 5.5.</dd></div>
+        <div><dt>Model</dt><dd>Fixed phrases are parsed locally in well under a millisecond, no model involved. Anything else goes to Claude Sonnet with the part's dimensions and the last few turns; a local Qwen3 8B through Ollama is the fallback. When a request is ambiguous it asks which dimension you meant instead of guessing. Geometry edits go to Claude Opus 5.5.</dd></div>
         <div><dt>Memory</dt><dd>Facts you tell it to remember survive restarts, and what you opened and edited is kept as a running history. When a project's model is on screen it reads that project's own notes. It speaks up unprompted only when a watched condition becomes true (unsaved edits, low disk), once, not for as long as it stays true.</dd></div>
-        <div><dt>Verification</dt><dd>Seven test suites pass: intents, gestures, CAD driving, dimension editing, STEP editing, memory and alerts, model backends. Synthetic hand frames drive the gesture tests.</dd></div>
+        <div><dt>Verification</dt><dd>Seven test suites pass (<strong>152</strong> checks): intents, gestures, CAD driving, dimension editing, STEP editing, memory and alerts, process cleanup. Synthetic hand frames drive the gesture tests.</dd></div>
         <div><dt>Status</dt><dd>Runs live: camera, gestures, voice, Claude and the local fallback. Built for macOS, Windows and Linux, with one-line installers that need no administrator rights; installed and run on macOS so far. Local model through Ollama, or bring your own Claude key. The macOS Accessibility grant, which keyboard, mouse and window control need on the Mac, is still pending.</dd></div>
         <div><dt>Source</dt><dd><a href="https://github.com/dylanleitenberg-tech/JARVIS">github.com/dylanleitenberg-tech/JARVIS</a>, open source under the MIT license.</dd></div>
       </dl>
@@ -386,32 +386,18 @@
     <div class="p-head">
       <span class="n">05</span>
       <h2>Neuropian</h2>
-      <!-- 2026-10-17 was: <span class="status live">Live</span><span>Full-stack web app</span> -->
       <p class="lede"><span class="status">Research prototype</span><span>Python · public APIs · local open-weight model</span><span><a href="https://neuropian.com">neuropian.com</a></span></p>
     </div>
 
     <div class="cols">
       <dl class="specs">
         <div class="h">What it is</div>
-        <!-- 2026-10-17 was (first version, April-September 2026; kept until Dylan confirms which parts to restore):
-        <div><dt>Premise</dt><dd>Find talented people by their online activity and put them into teams to solve problems.</dd></div>
-        <div><dt>Built</dt><dd>Authentication, database, live chat with in-line translation, a six-language front end, and an autonomous scouting agent.</dd></div>
-        <div><dt>Result</dt><dd>Identified <strong>934</strong> individuals across <strong>6</strong> platforms.</dd></div>
-        <div><dt>Where</dt><dd><a href="https://neuropian.com">neuropian.com</a> · <a href="https://github.com/dylanleitenberg-tech/Neuropian">source on GitHub</a></dd></div>
-        -->
         <div><dt>Premise</dt><dd>Find strong engineers and mathematicians by their public work: contest records, math answers, and code that maintainers merged.</dd></div>
         <div><dt>Built</dt><dd>A scout over Codeforces, AtCoder, Math Stack Exchange and GitHub, with out-of-time back-tests, and dossiers written by a model running on my laptop. Before it, from March to September 2026: a six-language site with accounts, a database and chat, now retired.</dd></div>
-        <div><dt>Result</dt><dd>Back-tested on <strong>11,088</strong> Codeforces players, on years it never saw: among players of equal rating, it ranked future breakthroughs at <strong>0.65</strong> AUC vs 0.60 for rating alone. <strong>150</strong> open-source contributors identified, <strong>30</strong> dossiers written.</dd></div>
+        <div><dt>Result</dt><dd>Back-tested on <strong>11,088</strong> Codeforces players, with traits picked on 2022–24 and tested unchanged on 2024–26: among players of equal rating, it ranked future breakthroughs at <strong>0.65</strong> AUC vs 0.60 for rating alone. Contributor list: <strong>1,857</strong> people across <strong>31</strong> open-source projects (18 Oct run); <strong>30</strong> dossiers written.</dd></div>
         <div><dt>Where</dt><dd><a href="https://neuropian.com">neuropian.com</a></dd></div>
       </dl>
       <div class="prose">
-        <!-- 2026-10-17: Dylan's words, hidden because they describe the retired first version (Reddit/Hacker News, 934 people,
-             no data on disk). His to rewrite for the current scout, or restore if confirmed.
-        <h4>What I built</h4>
-        <p>Online talent scout, identifying talent across online platforms like Reddit and Hacker News and teaming them up to solve problems and build based on their complementary traits.</p>
-        <h4>What was hard</h4>
-        <p>Getting people to the site. The scout found 934 people on its own; getting anyone to show up and use it was the part nothing in the code could solve.</p>
-        -->
         <h4>What I learned</h4>
         <p>You can make a great product or site but if nobody knows about it, it's worthless. Advertising is half the product.</p>
       </div>

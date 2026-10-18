@@ -68,7 +68,7 @@
       <li><a href="#asteroid-miner"><span class="n">02</span><span class="t">Self-Replicating Asteroid Miner<small>Design program, Mark 5</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#water-worm"><span class="n">03</span><span class="t">Water Worm<small>The asteroid worm, made waterproof for submerged mine tailings · CAD, 3D</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#jarvis"><span class="n">04</span><span class="t">J.A.R.V.I.S.<small>Hands-and-voice control of a computer, no keyboard, on macOS, Windows and Linux. CAD you turn in the air and edit by voice.</small></span><span class="arrow">↗</span></a></li>
-      <li><a href="#neuropian"><span class="n">05</span><span class="t">Neuropian<small>Talent-scouting web app · live</small></span><span class="arrow">↗</span></a></li>
+      <li><a href="#neuropian"><span class="n">05</span><span class="t">Neuropian<small>Talent scout · research prototype</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#toknx"><span class="n">06</span><span class="t">Toknx<small>AI-access exchange · live at toknx.ai</small></span><span class="arrow">↗</span></a></li>
       <li><a href="#robotics"><span class="n">07</span><span class="t">Youth Robotics Program<small>People, not hardware</small></span><span class="arrow">↗</span></a></li>
     </ol>
@@ -387,22 +387,32 @@
     <div class="p-head">
       <span class="n">05</span>
       <h2>Neuropian</h2>
-      <p class="lede"><span class="status live">Live</span><span>Full-stack web app</span><span><a href="https://neuropian.com">neuropian.com</a></span></p>
+      <!-- 2026-10-17 was: <span class="status live">Live</span><span>Full-stack web app</span> -->
+      <p class="lede"><span class="status">Research prototype</span><span>Python · public APIs · local open-weight model</span><span><a href="https://neuropian.com">neuropian.com</a></span></p>
     </div>
 
     <div class="cols">
       <dl class="specs">
         <div class="h">What it is</div>
+        <!-- 2026-10-17 was (first version, April-September 2026; kept until Dylan confirms which parts to restore):
         <div><dt>Premise</dt><dd>Find talented people by their online activity and put them into teams to solve problems.</dd></div>
         <div><dt>Built</dt><dd>Authentication, database, live chat with in-line translation, a six-language front end, and an autonomous scouting agent.</dd></div>
         <div><dt>Result</dt><dd>Identified <strong>934</strong> individuals across <strong>6</strong> platforms.</dd></div>
         <div><dt>Where</dt><dd><a href="https://neuropian.com">neuropian.com</a> · <a href="https://github.com/dylanleitenberg-tech/Neuropian">source on GitHub</a></dd></div>
+        -->
+        <div><dt>Premise</dt><dd>Find strong engineers and mathematicians by their public work: contest records, math answers, and code that maintainers merged.</dd></div>
+        <div><dt>Built</dt><dd>A scout over Codeforces, AtCoder, Math Stack Exchange and GitHub, with out-of-time back-tests, and dossiers written by a model running on my laptop. Before it, from April to September 2026: a six-language site with accounts, a database and chat, now retired.</dd></div>
+        <div><dt>Result</dt><dd>Back-tested on <strong>11,088</strong> Codeforces players. <strong>150</strong> open-source contributors identified, <strong>30</strong> dossiers written.</dd></div>
+        <div><dt>Where</dt><dd><a href="https://neuropian.com">neuropian.com</a></dd></div>
       </dl>
       <div class="prose">
+        <!-- 2026-10-17: Dylan's words, hidden because they describe the retired first version (Reddit/Hacker News, 934 people,
+             no data on disk). His to rewrite for the current scout, or restore if confirmed.
         <h4>What I built</h4>
         <p>Online talent scout, identifying talent across online platforms like Reddit and Hacker News and teaming them up to solve problems and build based on their complementary traits.</p>
         <h4>What was hard</h4>
         <p>Getting people to the site. The scout found 934 people on its own; getting anyone to show up and use it was the part nothing in the code could solve.</p>
+        -->
         <h4>What I learned</h4>
         <p>You can make a great product or site but if nobody knows about it, it's worthless. Advertising is half the product.</p>
       </div>

@@ -19,9 +19,9 @@ The asteroid worm made waterproof. The full-size machine is meant to burrow thro
 A voice and hand-gesture assistant with CAD you turn in the air and edit by voice: "make the nozzle 20 percent longer" took a 306-part rocket engine assembly from 3,420 to 3,855 mm long, throat fixed. Keyboard and mouse control on the Mac waits on the Accessibility permission; the Windows and Linux installers have not been run yet.\
 *From → to:* first commit 22 Sep 2026 → 24 Sep: hand-driven 3D viewer, CAD edits by voice and through Claude, installers for three systems (two not yet run); Claude replies 11.7 s → about 3 s.
 
-**05 · Neuropian** · research prototype · [neuropian.com](https://neuropian.com) · [site source](https://github.com/dylanleitenberg-tech/Neuropian)\
+**05 · Neuropian** · live · [neuropian.com](https://neuropian.com) · [site source](https://github.com/dylanleitenberg-tech/Neuropian)\
 Searches public work for strong engineers and mathematicians. Back-tested on 11,088 Codeforces players, with traits picked on 2022–24 and tested unchanged on 2024–26: among players of equal rating, it ranked future breakthroughs (reaching a 2400 rating, Codeforces "Grandmaster", within two years) at 0.65 AUC vs 0.60 for rating alone (0.5 = chance).\
-*From → to:* a six-language site with accounts, a database and chat (March–September 2026, retired) → a back-tested scout (October 2026). Contributor list: first capped at 150 → 1,857 people across 31 open-source projects (18 Oct run). 30 dossiers (short reports linking to each person's work) written.
+*From → to:* an earlier site with accounts, a database and chat (March–September 2026) → a back-tested scout (October 2026) → live at neuropian.com (November 2026): Falcon has read the merged work of 138,625 people across 3,088 open-source projects, and 438 people have published a profile with their own yes (3 Nov 2026).
 
 **06 · Toknx** · live at [toknx.ai](https://toknx.ai)\
 Trade AI access without money: answer other people's prompts on the AI you already pay for, earn request tokens, and spend them on models you don't have. OpenAI-compatible API; reviewed by AI red-team agents.\

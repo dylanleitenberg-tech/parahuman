@@ -508,6 +508,24 @@
   </div>
 </section>
 
+<!-- ============================ ACADEMY (locked) ============================
+     The content is encrypted (vault/section.bin, AES-256-GCM, key from the
+     password via PBKDF2). Source lives in a private repo, never here. -->
+<section class="plain" id="academy">
+  <div class="wrap">
+    <h2>For reviewers</h2>
+    <form class="acad-gate" id="acad-gate" autocomplete="off">
+      <label for="acad-pw">Password</label>
+      <div class="acad-row">
+        <input id="acad-pw" type="password" autocomplete="off" spellcheck="false">
+        <button type="submit">Unlock</button>
+      </div>
+      <p class="acad-msg" id="acad-msg" aria-live="polite"></p>
+    </form>
+    <div id="acad-body" hidden></div>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -538,6 +556,25 @@
   var bar = document.getElementById('progress');
   function tick() { var h = root; var max = h.scrollHeight - h.clientHeight; bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%'; }
   window.addEventListener('scroll', tick, { passive: true }); tick();
+})();
+</script>
+
+<script src="vault/js/vault.js?v=1"></script>
+<script>
+(function () {
+  var form = document.getElementById('acad-gate'), msg = document.getElementById('acad-msg'),
+      body = document.getElementById('acad-body'), pw = document.getElementById('acad-pw');
+  function show(u8) {
+    body.innerHTML = new TextDecoder().decode(u8);
+    body.hidden = false; form.hidden = true;
+  }
+  if (window.VAULT && VAULT.hasKey()) VAULT.open('vault/section.bin?v=1').then(show).catch(function () { VAULT.forget(); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.textContent = 'Checking…';
+    VAULT.open('vault/section.bin?v=1', pw.value).then(function (u8) { msg.textContent = ''; show(u8); })
+      .catch(function (err) { msg.textContent = err.message === 'wrong password' ? 'Wrong password.' : 'Could not unlock: ' + err.message; });
+  });
 })();
 </script>
 

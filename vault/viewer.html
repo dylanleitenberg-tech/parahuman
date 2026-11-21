@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Astroworm 3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/jarvis.css?v=1">
+<style>
+  html, body { background: #01060b; overflow: hidden; }
+  body::before, body::after { display: none; }
+  .model-view { inset: 0 !important; clip-path: none !important; border: 0 !important; }
+  .model-head { flex-wrap: wrap; gap: 10px; }
+  .model-head .sp { flex: 1; }
+  .model-head a.ghost { text-decoration: none; color: var(--hud-bright); font-family: var(--font-head); font-size: 11px; letter-spacing: .18em; padding: 8px 12px; border: 1px solid var(--hud-faint); }
+  .model-head button.ghost.on { color: #01060b; background: var(--hud); }
+  .model-cam { width: 220px; height: 165px; }
+  .model-cam video, .model-cam canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .model-cam video { transform: scaleX(-1); opacity: .55; }
+  #heard { position: absolute; left: 50%; bottom: 64px; transform: translateX(-50%); max-width: min(680px, 90vw);
+    font-family: var(--font-mono); font-size: 13px; color: var(--hud-bright); text-align: center;
+    text-shadow: var(--glow); pointer-events: none; z-index: 9; }
+  #heard i { color: var(--hud-dim); font-style: normal; display: block; }
+  #gate { position: fixed; inset: 0; display: grid; place-items: center; z-index: 50; background: #01060b; }
+  #gate[hidden] { display: none; }
+  #gate form { display: grid; gap: 12px; width: min(320px, 86vw); font-family: var(--font-ui); color: var(--hud-bright); }
+  #gate input, #gate button { font: inherit; font-size: 16px; padding: 10px 12px; background: transparent;
+    color: var(--hud-bright); border: 1px solid var(--hud-mid); }
+  #gate p { font-family: var(--font-mono); font-size: 12px; color: var(--red); min-height: 1em; }
+  .model-cam span { z-index: 2; }
+  @media (max-width: 700px) { .model-cam { width: 132px; height: 99px; } .model-hint { display: none; } }
+</style>
+</head>
+<body>
+
+<div id="gate" hidden>
+  <form id="gate-form" autocomplete="off">
+    <label for="pw">Password</label>
+    <input id="pw" type="password" autofocus>
+    <button type="submit">Open</button>
+    <p id="gate-msg"></p>
+  </form>
+</div>
+
+<div class="model-view" id="model-view">
+  <header class="model-head">
+    <div>
+      <h2 id="model-name">ASTROWORM</h2>
+      <p id="model-meta"></p>
+    </div>
+    <span class="sp"></span>
+    <button class="ghost" id="btn-hands" title="Turn the model with your hands (uses the camera; nothing leaves this browser)">HANDS</button>
+    <button class="ghost" id="btn-voice" title="Talk to it: explode, show the nose, put it back">VOICE</button>
+    <button class="ghost" id="model-reset">RESET VIEW</button>
+    <a class="ghost" href="/#academy">← BACK</a>
+  </header>
+  <div class="model-stage" id="model-stage">
+    <div class="model-status" id="model-status" hidden></div>
+    <div class="model-hint">mouse: drag to turn · right-drag to slide · scroll to zoom · click a piece to take it out ·
+      hands: open hand turns · pinch to pick · point to see a piece ·
+      voice: "explode" · "show the nose" · "put it back"</div>
+    <div class="model-cam" id="model-cam" hidden>
+      <img id="model-cam-img" alt="" hidden>
+      <video id="cam" playsinline muted></video>
+      <canvas id="cam-draw"></canvas>
+      <div class="feed-corners"><i></i><i></i><i></i><i></i></div>
+      <span>OPTICAL</span>
+    </div>
+    <div id="heard"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/vault.js?v=1"></script>
+<script src="js/model.js?v=1"></script>
+<script src="js/assembly.js?v=1"></script>
+<script src="js/voice.js?v=1"></script>
+<script type="module">
+import { startHands } from './js/hands.js?v=1';
+
+const $ = (s) => document.querySelector(s);
+const viewer = new ModelViewer();
+window.viewer = viewer;
+const model = { name: 'Astroworm', path: 'astroworm', project: 'Asteroid miner', suffix: '.assembly' };
+
+async function boot(password) {
+  viewer.setStatus('decrypting…');
+  await VAULT.loadPackage('astroworm.bin?v=1', password);
+  $('#gate').hidden = true;
+  viewer.toggle(true);
+  // the cam corner only shows while hands are on
+  $('#model-cam').hidden = true;
+  await viewer.load(model);
+}
+
+$('#gate-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  $('#gate-msg').textContent = 'checking…';
+  try { await boot($('#pw').value); $('#gate-msg').textContent = ''; }
+  catch (err) { $('#gate-msg').textContent = err.message === 'wrong password' ? 'Wrong password.' : err.message; }
+});
+
+(async () => {
+  if (VAULT.hasKey()) {
+    try { await boot(null); return; } catch (_) { VAULT.forget(); }
+  }
+  $('#gate').hidden = false; $('#pw').focus();
+})();
+
+$('#model-reset').onclick = () => viewer.reset();
+
+// hands
+let stopHands = null;
+$('#btn-hands').onclick = async () => {
+  const b = $('#btn-hands');
+  if (stopHands) { stopHands(); stopHands = null; b.classList.remove('on'); $('#model-cam').hidden = true; return; }
+  try {
+    $('#model-cam').hidden = false;
+    stopHands = await startHands(viewer, { video: $('#cam'), canvas: $('#cam-draw'),
+      onStatus: (t) => viewer.setStatus(t) });
+    b.classList.add('on');
+  } catch (err) {
+    $('#model-cam').hidden = true;
+    viewer.setStatus('camera unavailable: ' + (err.message || err.name));
+  }
+};
+
+// voice
+const heard = $('#heard');
+const voice = new VaultVoice(viewer, {
+  onHeard: (you, it) => {
+    if (you) heard.innerHTML = '<i>“' + you.replace(/</g, '&lt;') + '”</i>';
+    if (it) heard.innerHTML = (heard.innerHTML.startsWith('<i>') ? heard.innerHTML.split('</i>')[0] + '</i>' : '') + it;
+    clearTimeout(heard._t); heard._t = setTimeout(() => { heard.innerHTML = ''; }, 5000);
+  },
+  onState: (on) => $('#btn-voice').classList.toggle('on', on),
+});
+$('#btn-voice').onclick = () => {
+  if (!voice.supported) { viewer.setStatus('voice needs Chrome, Edge or Safari'); setTimeout(() => viewer.setStatus(''), 3500); return; }
+  if (voice.on) voice.stop(); else { voice.start(); voice.say('Listening. Say explode, or show the nose.'); }
+};
+</script>
+</body>
+</html>

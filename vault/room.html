@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Proof Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:opsz,wght@14..32,400;14..32,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050506; --plate: #0c0c0e; --line: #1f1f23; --ink: #ece9e2; --ink-2: #b4b1a9; --ink-3: #78766f;
+  --red: #d2451f; --red-glow: rgba(210, 69, 31, .18);
+  --display: "Syne", system-ui, sans-serif; --sans: "Inter", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+  --max: 1180px; --gutter: 16px;
+}
+* { box-sizing: border-box; }
+html { color-scheme: dark; scroll-behavior: smooth; overflow-x: clip; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--sans); overflow-x: hidden; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* living backdrop: faint grid + a red light that follows the pointer */
+.backdrop { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(236,233,226,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(236,233,226,.035) 1px, transparent 1px);
+  background-size: 56px 56px; mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 80%); }
+.spot { position: fixed; z-index: 0; pointer-events: none; width: 900px; height: 900px; left: -450px; top: -450px;
+  background: radial-gradient(circle, rgba(210,69,31,.13), transparent 60%); transform: translate(var(--mx, 50vw), var(--my, 30vh)); transition: transform .25s ease-out; }
+
+/* ---------- intro ---------- */
+#intro { position: fixed; inset: 0; z-index: 100; background: #000; display: grid; place-items: center; cursor: pointer; }
+#intro[hidden] { display: none; }
+#intro canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#intro .seam { position: absolute; left: 50%; top: 50%; height: 1px; width: 0; background: var(--red);
+  box-shadow: 0 0 18px 2px var(--red), 0 0 60px 6px var(--red-glow); transform: translate(-50%, -50%); }
+#intro .door { position: absolute; left: 0; right: 0; height: 50%; background: #000; z-index: 2; }
+#intro .door.top { top: 0; } #intro .door.bot { bottom: 0; }
+#intro .msg { position: relative; z-index: 3; text-align: center; font-family: var(--mono); letter-spacing: .32em; opacity: 0; }
+#intro .msg b { display: block; font-size: clamp(18px, 3.4vw, 34px); font-weight: 500; color: var(--ink); text-shadow: 0 0 24px var(--red-glow); }
+#intro .msg span { display: block; margin-top: 14px; font-size: 11px; color: var(--red); }
+#intro .skip { position: absolute; z-index: 3; bottom: 22px; left: 0; right: 0; text-align: center; font: 11px var(--mono); letter-spacing: .2em; color: var(--ink-3); }
+
+/* ---------- gate ---------- */
+#gate { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: #000; }
+#gate[hidden] { display: none; }
+#gate form { width: min(340px, calc(100vw - 32px)); display: grid; gap: 12px; }
+#gate label { font: 12px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+#gate input, #gate button { font: 16px var(--mono); padding: 12px 14px; background: transparent; color: var(--ink); border: 1px solid var(--line); }
+#gate button { border-color: var(--red); cursor: pointer; }
+#gate p { font: 13px var(--mono); color: var(--red); min-height: 1.2em; margin: 0; }
+
+/* ---------- room ---------- */
+#room { position: relative; z-index: 1; opacity: 0; transition: opacity .9s ease; }
+#room.in { opacity: 1; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.top { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(10px); background: rgba(5,5,6,.72); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 18px; height: 54px; }
+.top .brand { flex: none; font: 600 13px var(--mono); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.top .brand i { font-style: normal; color: var(--red); }
+.top nav { margin-left: auto; min-width: 0; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.top nav a { font: 12px var(--mono); color: var(--ink-3); text-decoration: none; padding: 6px 10px; white-space: nowrap; border-radius: 3px; }
+.top nav a:hover, .top nav a.on { color: var(--ink); background: rgba(236,233,226,.06); }
+.hero { padding: 96px 0 64px; }
+.hero .k { font: 12px var(--mono); letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin: 0 0 22px; }
+.hero h1 { font: 800 clamp(34px, 10.5vw, 104px)/.95 var(--display); letter-spacing: -.04em; margin: 0 0 26px; }
+.hero h1 em { font-style: normal; color: transparent; -webkit-text-stroke: 1px var(--ink); }
+.hero p { max-width: 62ch; color: var(--ink-2); font-size: 18px; margin: 0; }
+.chapter { padding: 88px 0; border-top: 1px solid var(--line); }
+.ch-head { display: grid; grid-template-columns: 70px 1fr; gap: 16px; align-items: baseline; margin-bottom: 34px; }
+.ch-head .n { font: 14px var(--mono); color: var(--red); }
+.ch-head h2 { font: 700 clamp(36px, 5.6vw, 68px)/1 var(--display); letter-spacing: -.03em; margin: 0; }
+.ch-head .sub { grid-column: 2; font: 12.5px var(--mono); color: var(--ink-3); margin: 10px 0 0; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 0 0 40px; }
+.stat { background: var(--plate); padding: 22px 20px; }
+.stat b { display: block; font: 700 clamp(28px, 3.4vw, 40px)/1.05 var(--display); letter-spacing: -.02em; }
+.stat span { display: block; margin-top: 8px; font: 12px/1.45 var(--mono); color: var(--ink-3); }
+.cols { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.how h3, .facts h3, .words h3 { font: 500 11.5px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--red); margin: 0 0 14px; }
+.how ul { margin: 0; padding: 0; list-style: none; }
+.how li { padding: 12px 0 12px 22px; border-bottom: 1px solid var(--line); position: relative; color: var(--ink); }
+.how li::before { content: ""; position: absolute; left: 0; top: 21px; width: 8px; height: 1px; background: var(--red); }
+.facts table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.facts td { padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.facts td:first-child { color: var(--ink-2); width: 46%; }
+.facts td.src { font: 11px/1.4 var(--mono); color: var(--ink-3); word-break: break-word; }
+.facts tr.hw td:first-child::after, .facts tr.sim td:first-child::after { font: 10px var(--mono); margin-left: 8px; padding: 1px 5px; border: 1px solid var(--line); color: var(--ink-3); }
+.facts tr.hw td:first-child::after { content: "HARDWARE"; color: var(--red); border-color: var(--red); }
+.facts tr.sim td:first-child::after { content: "SIM"; }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 40px 0 0; }
+.gallery figure { margin: 0; border: 1px solid var(--line); background: var(--plate); }
+.gallery figure.wide { grid-column: 1 / -1; }
+.gallery figcaption { padding: 12px 16px; font-size: 13.5px; color: var(--ink-2); border-top: 1px solid var(--line); }
+.words { margin: 36px 0 0; padding: 22px 24px; border-left: 2px solid var(--red); background: linear-gradient(90deg, var(--red-glow), transparent 70%); }
+.words p { margin: 0 0 12px; font-size: 17px; }
+.go { max-width: 100%; flex-wrap: wrap; display: inline-flex; gap: 10px; align-items: center; margin-top: 26px; font: 15px var(--mono); padding: 13px 20px; border: 1px solid var(--red);
+  color: var(--ink); text-decoration: none; background: rgba(210,69,31,.08); transition: background .2s, transform .2s; }
+.go:hover { background: var(--red); color: #fff; transform: translateY(-1px); }
+.links { display: flex; flex-wrap: wrap; gap: 12px; }
+.worm-stage { position: relative; border: 1px solid var(--line); background: radial-gradient(ellipse at 50% 60%, #0b1a22, #000 70%); overflow: hidden; }
+.worm-stage img { width: 100%; mix-blend-mode: screen; transform: scale(1.02); transition: transform 6s ease; }
+.worm-stage:hover img { transform: scale(1.08); }
+.worm-stage .scan { position: absolute; left: 0; right: 0; height: 120px; top: -120px; background: linear-gradient(transparent, rgba(100,227,255,.10), transparent); animation: scan 4.5s linear infinite; }
+@keyframes scan { to { top: 100%; } }
+[data-r] { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+[data-r].in { opacity: 1; transform: none; }
+footer { border-top: 1px solid var(--line); padding: 40px 0 60px; font: 12px var(--mono); color: var(--ink-3); }
+@media (max-width: 860px) { .cols, .gallery { grid-template-columns: 1fr; } .ch-head { grid-template-columns: 44px 1fr; } .hero { padding: 64px 0 40px; } }
+@media (prefers-reduced-motion: reduce) { [data-r] { opacity: 1; transform: none; transition: none; } .worm-stage .scan { display: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="backdrop"></div><div class="spot" id="spot"></div>
+
+<div id="gate" hidden>
+  <form id="gate-form" autocomplete="off">
+    <label for="pw">Password</label>
+    <input id="pw" type="password">
+    <button type="submit">Enter</button>
+    <p id="gate-msg"></p>
+  </form>
+</div>
+
+<div id="intro" hidden>
+  <canvas id="fx"></canvas>
+  <div class="door top"></div><div class="door bot"></div>
+  <div class="seam"></div>
+  <div class="msg"><b id="msg-a"></b><span id="msg-b"></span></div>
+  <div class="skip">click to skip</div>
+</div>
+
+<div id="room"></div>
+
+<script src="js/vault.js?v=2"></script>
+<script>
+(function () {
+  'use strict';
+  const $ = (s) => document.querySelector(s);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  addEventListener('pointermove', (e) => {
+    document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+    document.documentElement.style.setProperty('--my', e.clientY + 'px');
+  }, { passive: true });
+
+  /* ---------------- the entrance ---------------- */
+  function scramble(el, text, ms) {
+    const glyphs = '01ABCDEF#%&*+<>/\\=';
+    const t0 = performance.now();
+    return new Promise((done) => {
+      (function step(now) {
+        const p = Math.min(1, (now - t0) / ms);
+        const fixed = Math.floor(p * text.length);
+        el.textContent = text.slice(0, fixed) + Array.from(text.slice(fixed), (c) => c === ' ' ? ' ' : glyphs[(Math.random() * glyphs.length) | 0]).join('');
+        if (p < 1) requestAnimationFrame(step); else done();
+      })(t0);
+    });
+  }
+
+  function particles(canvas) {
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(2, devicePixelRatio || 1);
+    let W, H, pts = [], phase = 'gather', t0 = performance.now(), alive = true;
+    function size() { W = canvas.width = innerWidth * dpr; H = canvas.height = innerHeight * dpr; }
+    size(); addEventListener('resize', size);
+    const N = Math.min(900, Math.floor(innerWidth * innerHeight / 1400));
+    for (let i = 0; i < N; i++) {
+      const a = Math.random() * Math.PI * 2, r = Math.max(W, H) * (0.4 + Math.random() * 0.6);
+      pts.push({ x: W / 2 + Math.cos(a) * r, y: H / 2 + Math.sin(a) * r, vx: 0, vy: 0,
+        c: Math.random() < 0.22 ? '210,69,31' : '236,233,226', s: (Math.random() * 1.4 + 0.4) * dpr });
+    }
+    (function frame(now) {
+      if (!alive) return;
+      const t = now - t0;
+      ctx.fillStyle = 'rgba(0,0,0,0.22)'; ctx.fillRect(0, 0, W, H);
+      for (const p of pts) {
+        const dx = W / 2 - p.x, dy = H / 2 - p.y, d = Math.hypot(dx, dy) + 1;
+        if (phase === 'gather') { p.vx += dx / d * 0.9 * dpr; p.vy += dy / d * 0.9 * dpr; p.vx *= 0.92; p.vy *= 0.92;
+          p.vx += -dy / d * 0.35 * dpr; p.vy += dx / d * 0.35 * dpr; }
+        else { p.vx -= dx / d * 2.4 * dpr; p.vy -= dy / d * 2.4 * dpr; p.vx *= 0.96; p.vy *= 0.96; }
+        p.x += p.vx; p.y += p.vy;
+        ctx.fillStyle = `rgba(${p.c},${phase === 'gather' ? 0.9 : Math.max(0, 0.9 - (t - 1300) / 900)})`;
+        ctx.fillRect(p.x, p.y, p.s, p.s);
+      }
+      if (phase === 'gather' && t > 1150) phase = 'burst';
+      requestAnimationFrame(frame);
+    })(t0);
+    return () => { alive = false; };
+  }
+
+  async function intro() {
+    const box = $('#intro'), seam = box.querySelector('.seam'), msg = box.querySelector('.msg');
+    const top = box.querySelector('.door.top'), bot = box.querySelector('.door.bot');
+    box.hidden = false;
+    let skipped = false;
+    const skip = () => { skipped = true; };
+    box.addEventListener('click', skip); addEventListener('keydown', skip, { once: true });
+    const ease = 'cubic-bezier(.7,0,.2,1)';
+    // 1. the seam
+    seam.animate([{ width: '0px' }, { width: '100vw' }], { duration: 520, easing: ease, fill: 'forwards' });
+    await wait(560); if (skipped) return end();
+    // 2. doors open on the particle field
+    const stop = particles($('#fx'));
+    top.animate([{ transform: 'none' }, { transform: 'translateY(-100%)' }], { duration: 900, easing: ease, fill: 'forwards' });
+    bot.animate([{ transform: 'none' }, { transform: 'translateY(100%)' }], { duration: 900, easing: ease, fill: 'forwards' });
+    seam.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 700, fill: 'forwards' });
+    await wait(500); if (skipped) { stop(); return end(); }
+    // 3. the words
+    msg.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, fill: 'forwards' });
+    await scramble($('#msg-a'), 'ACCESS GRANTED', 700);
+    await scramble($('#msg-b'), 'PROOF ROOM · DYLAN LEITENBERG', 600);
+    await wait(650);
+    stop();
+    return end();
+    function end() {
+      box.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 600, fill: 'forwards' }).onfinish = () => { box.hidden = true; };
+    }
+  }
+
+  /* ---------------- the room ---------------- */
+  function reveal() {
+    const els = document.querySelectorAll('#room .chapter > .wrap > *, #room .hero .wrap > *, #room .gallery figure, #room .stat');
+    els.forEach((el, i) => { el.setAttribute('data-r', ''); el.style.transitionDelay = (Math.min(i % 6, 5) * 60) + 'ms'; });
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
+      { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+    els.forEach((el) => io.observe(el));
+    // nav highlight
+    const links = [...document.querySelectorAll('.top nav a')];
+    const secs = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    addEventListener('scroll', () => {
+      let cur = null; for (const s of secs) if (s.getBoundingClientRect().top < 140) cur = s;
+      links.forEach((a) => a.classList.toggle('on', cur && a.getAttribute('href') === '#' + cur.id));
+    }, { passive: true });
+    // count-up stats
+    document.querySelectorAll('.stat b[data-n]').forEach((b) => {
+      const target = +b.dataset.n, suffix = b.dataset.s || '', dec = +(b.dataset.d || 0);
+      const run = () => { const t0 = performance.now(); (function f(now) { const p = Math.min(1, (now - t0) / 1400); const v = target * (1 - Math.pow(1 - p, 3));
+        b.textContent = v.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suffix; if (p < 1) requestAnimationFrame(f); })(t0); };
+      if (reduce) { b.textContent = target.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suffix; return; }
+      new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { run(); o.disconnect(); } }).observe(b);
+    });
+  }
+
+  async function show(password) {
+    const html = new TextDecoder().decode(await VAULT.open('room.bin?v=2', password));
+    $('#gate').hidden = true;
+    const playing = (!reduce && !sessionStorage.getItem('phv-seen')) ? intro() : Promise.resolve();
+    try { sessionStorage.setItem('phv-seen', '1'); } catch (_) {}
+    $('#room').innerHTML = html;
+    reveal();
+    await playing;
+    $('#room').classList.add('in');
+    if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
+  }
+
+  $('#gate-form').addEventListener('submit', async (e) => {
+    e.preventDefault(); $('#gate-msg').textContent = 'checking…';
+    try { await show($('#pw').value); } catch (err) { $('#gate-msg').textContent = err.message === 'wrong password' ? 'Wrong password.' : err.message; }
+  });
+  (async () => {
+    if (VAULT.hasKey()) { try { await show(null); return; } catch (_) { VAULT.forget(); } }
+    $('#gate').hidden = false; $('#pw').focus();
+  })();
+})();
+</script>
+</body>
+</html>

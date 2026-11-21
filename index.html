@@ -522,8 +522,7 @@
       </div>
       <p class="acad-msg" id="acad-msg" aria-live="polite"></p>
     </form>
-    <div id="acad-body" hidden></div>
-  </div>
+      </div>
 </section>
 
 </main>
@@ -559,20 +558,14 @@
 })();
 </script>
 
-<script src="vault/js/vault.js?v=1"></script>
+<script src="vault/js/vault.js?v=2"></script>
 <script>
 (function () {
-  var form = document.getElementById('acad-gate'), msg = document.getElementById('acad-msg'),
-      body = document.getElementById('acad-body'), pw = document.getElementById('acad-pw');
-  function show(u8) {
-    body.innerHTML = new TextDecoder().decode(u8);
-    body.hidden = false; form.hidden = true;
-  }
-  if (window.VAULT && VAULT.hasKey()) VAULT.open('vault/section.bin?v=1').then(show).catch(function () { VAULT.forget(); });
+  var form = document.getElementById('acad-gate'), msg = document.getElementById('acad-msg'), pw = document.getElementById('acad-pw');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     msg.textContent = 'Checking…';
-    VAULT.open('vault/section.bin?v=1', pw.value).then(function (u8) { msg.textContent = ''; show(u8); })
+    VAULT.open('vault/room.bin?v=2', pw.value).then(function () { msg.textContent = 'Access granted.'; location.href = 'vault/room.html'; })
       .catch(function (err) { msg.textContent = err.message === 'wrong password' ? 'Wrong password.' : 'Could not unlock: ' + err.message; });
   });
 })();

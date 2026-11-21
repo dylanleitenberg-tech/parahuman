@@ -55,7 +55,7 @@
     <button class="ghost" id="btn-hands" title="Turn the model with your hands (uses the camera; nothing leaves this browser)">HANDS</button>
     <button class="ghost" id="btn-voice" title="Talk to it: explode, show the nose, put it back">VOICE</button>
     <button class="ghost" id="model-reset">RESET VIEW</button>
-    <a class="ghost" href="/#academy">← BACK</a>
+    <a class="ghost" href="room.html#astroworm">← ROOM</a>
   </header>
   <div class="model-stage" id="model-stage">
     <div class="model-status" id="model-status" hidden></div>
@@ -74,7 +74,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="js/vault.js?v=1"></script>
+<script src="js/vault.js?v=2"></script>
 <script src="js/model.js?v=1"></script>
 <script src="js/assembly.js?v=1"></script>
 <script src="js/voice.js?v=1"></script>
@@ -88,7 +88,7 @@ const model = { name: 'Astroworm', path: 'astroworm', project: 'Asteroid miner',
 
 async function boot(password) {
   viewer.setStatus('decrypting…');
-  await VAULT.loadPackage('astroworm.bin?v=1', password);
+  await VAULT.loadPackage('astroworm.bin?v=2', password);
   $('#gate').hidden = true;
   viewer.toggle(true);
   // the cam corner only shows while hands are on

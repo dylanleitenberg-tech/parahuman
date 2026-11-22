@@ -21,7 +21,7 @@ A voice and hand-gesture assistant with CAD you turn in the air and edit by voic
 
 **05 · Neuropian** · live · [neuropian.com](https://neuropian.com) · [site source](https://github.com/dylanleitenberg-tech/Neuropian)\
 Searches public work for strong engineers and mathematicians. Back-tested on 11,088 Codeforces players, with traits picked on 2022–24 and tested unchanged on 2024–26: among players of equal rating, it ranked future breakthroughs (reaching a 2400 rating, Codeforces "Grandmaster", within two years) at 0.65 AUC vs 0.60 for rating alone (0.5 = chance).\
-*From → to:* an earlier site with accounts, a database and chat (March–September 2026) → a back-tested scout (October 2026) → live at neuropian.com (November 2026): Falcon has read the merged work of 138,625 people across 3,088 open-source projects, and 440 people have published a profile with their own yes (3 Nov 2026).
+*From → to:* an earlier site with accounts, a database and chat (March–September 2026) → a back-tested scout (October 2026) → live at neuropian.com (November 2026): Falcon searches 3,088 major open-source projects (2.5 million merged pull requests by 159,235 people in the 12 months to October 2026), and 485 people have published a profile with their own yes (21 Nov 2026).
 
 **06 · Toknx** · live at [toknx.ai](https://toknx.ai)\
 Trade AI access without money: answer other people's prompts on the AI you already pay for, earn request tokens, and spend them on models you don't have. OpenAI-compatible API; reviewed by AI red-team agents.\
